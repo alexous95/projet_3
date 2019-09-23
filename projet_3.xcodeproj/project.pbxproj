@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FA5B92252338D44A00159AFF /* Gun.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B92242338D44A00159AFF /* Gun.swift */; };
+		FA5B92252338D44A00159AFF /* gun.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B92242338D44A00159AFF /* gun.swift */; };
 		FAD1C2912338C39D00456B59 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1C2902338C39D00456B59 /* main.swift */; };
 		FAD1C2982338C41600456B59 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1C2972338C41600456B59 /* Character.swift */; };
 		FAD1C29A2338C46600456B59 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1C2992338C46600456B59 /* Weapon.swift */; };
@@ -28,7 +28,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FA5B92242338D44A00159AFF /* Gun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gun.swift; sourceTree = "<group>"; };
+		FA5B92242338D44A00159AFF /* gun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gun.swift; sourceTree = "<group>"; };
 		FAD1C28D2338C39D00456B59 /* projet_3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = projet_3; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD1C2902338C39D00456B59 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		FAD1C2972338C41600456B59 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 				FAD1C2992338C46600456B59 /* Weapon.swift */,
 				FAD1C29B2338C8D300456B59 /* Sword.swift */,
 				FAD1C29D2338CC5600456B59 /* Player.swift */,
-				FA5B92242338D44A00159AFF /* Gun.swift */,
+				FA5B92242338D44A00159AFF /* gun.swift */,
 			);
 			path = projet_3;
 			sourceTree = "<group>";
@@ -135,7 +135,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA5B92252338D44A00159AFF /* Gun.swift in Sources */,
+				FA5B92252338D44A00159AFF /* gun.swift in Sources */,
 				FAD1C29A2338C46600456B59 /* Weapon.swift in Sources */,
 				FAD1C29C2338C8D300456B59 /* Sword.swift in Sources */,
 				FAD1C2912338C39D00456B59 /* main.swift in Sources */,
