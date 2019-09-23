@@ -11,12 +11,16 @@ import Foundation
 class Sword : Weapon {
    
     init(){
-        super.init(dammage: 8)
+        super.init(dammage: 30)
+    }
+    
+    init(newDammage : Int){
+        super.init(dammage: newDammage)
     }
     
     override func description(){
         super.description()
-        print("Et je suis de type épée")
+        print("Je suis de type épée et j'inflige \(self.dammage) dégats")
     }
     
     

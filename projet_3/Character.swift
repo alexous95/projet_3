@@ -14,7 +14,7 @@ class Character {
     var name : String
     
     //Creation de la varianle healthpoint qui correspond au point de vie. Je l'ai initialise par defaut a 100
-    var healthPoint : Int = 100
+    var healthPoint : Int = 40
     
     //Creation de la variable weapon qui contient l'arme choisis par le joueur
     var weapon : Weapon
@@ -26,7 +26,7 @@ class Character {
     }
     
     //Fonction attaque qui prend en parametre le joueur attaque
-    func toAttack(player : Character){
+    func attack(player : Character){
         player.healthPoint = player.healthPoint - self.weapon.dammage
     }
     

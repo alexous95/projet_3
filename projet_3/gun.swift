@@ -14,9 +14,13 @@ class Gun : Weapon {
         super.init(dammage: 7)
     }
     
+    init(newDammage : Int){
+        super.init(dammage: newDammage)
+    }
+    
     override func description(){
         super.description()
-        print("Et je suis de type fusil")
+        print("Je suis de type fusil et j'inflige \(self.dammage) dégats")
     }
     
 

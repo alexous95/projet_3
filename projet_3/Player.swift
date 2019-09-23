@@ -16,8 +16,19 @@ class Player {
     
     func detailTeam(){
         for chara in team {
-            print("Character's name : \(chara.name)\t Character's life \(chara.healthPoint)")
+            print("Nom du personnage : \(chara.name)\t Point de vie : \(chara.healthPoint)")
         }
-        
+    }
+    
+    func removeCharacter(index : Int){
+        team.remove(at: index)
+    }
+    
+    func printName(){
+        var i = 1
+        for chara in team {
+            print("\(i): \(chara.name)")
+            i += 1
+        }
     }
 }
