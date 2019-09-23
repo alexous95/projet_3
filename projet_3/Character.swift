@@ -26,4 +26,7 @@ class Character {
         self.weapon = newWeapon
     }
     
+    func heal(){
+        self.healthPoint += 10
+    }
 }
