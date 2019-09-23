@@ -189,13 +189,31 @@ repeat{
     switch Int(newChoiceP1!) {
     case 1:
         player1.team[Int(choiceP1!)!].attack(player: player2.team[0])
+        
+        if player2.team[0].healthPoint <= 0{
+            player2.removeCharacter(index: 0)
+        }
+        
         totalHpPlayer2 -= player1.team[Int(choiceP1!)!].weapon.dammage
+        
     case 2:
         player1.team[Int(choiceP1!)!].attack(player: player2.team[1])
+        
+        if player2.team[1].healthPoint <= 0 {
+            player2.removeCharacter(index: 1)
+        }
+        
         totalHpPlayer2 -= player1.team[Int(choiceP1!)!].weapon.dammage
+        
     case 3:
         player1.team[Int(choiceP1!)!].attack(player: player2.team[2])
+        
+        if player2.team[2].healthPoint <= 0 {
+            player2.removeCharacter(index: 2)
+        }
+        
         totalHpPlayer2 -= player1.team[Int(choiceP1!)!].weapon.dammage
+        
     default:
         fatalError()
     }
@@ -254,16 +272,35 @@ repeat{
             
         }while(Int(newChoiceP2!)! > 3 || Int(newChoiceP2!)! < 1 )
     }
+    
     switch Int(newChoiceP2!) {
     case 1:
-        player1.team[Int(choiceP2!)!].attack(player: player1.team[0])
+        player2.team[Int(choiceP2!)!].attack(player: player1.team[0])
+        
+        if player1.team[0].healthPoint <= 0 {
+            player1.removeCharacter(index: 0)
+        }
+        
         totalHpPlayer1 -= player2.team[Int(choiceP2!)!].weapon.dammage
+        
     case 2:
-        player1.team[Int(choiceP2!)!].attack(player: player1.team[1])
+        player2.team[Int(choiceP2!)!].attack(player: player1.team[1])
+        
+        if player1.team[1].healthPoint <= 0 {
+            player1.removeCharacter(index: 1)
+        }
+        
         totalHpPlayer1 -= player2.team[Int(choiceP2!)!].weapon.dammage
+        
     case 3:
-        player1.team[Int(choiceP2!)!].attack(player: player1.team[2])
+        player2.team[Int(choiceP2!)!].attack(player: player1.team[2])
+        
+        if player1.team[2].healthPoint <= 0 {
+            player1.removeCharacter(index: 2)
+        }
+        
         totalHpPlayer1 -= player2.team[Int(choiceP2!)!].weapon.dammage
+        
     default:
         fatalError()
     }
