@@ -9,5 +9,15 @@
 import Foundation
 
 class Player {
+    
+    //La variable team contiendra les 3 personnages de chaques joueurs
     var team : [Character] = []
+    
+    
+    func detailTeam(){
+        for chara in team {
+            print("Character's name : \(chara.name)\t Character's life \(chara.healthPoint)")
+        }
+        
+    }
 }
