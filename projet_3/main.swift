@@ -84,7 +84,7 @@ repeat{
         print("")
         choiceIntPlayer1 = inputInt()
         print("")
-    }while(choiceIntPlayer1 != 1 || choiceIntPlayer1 != 2)
+    }while choiceIntPlayer1 != 1 && choiceIntPlayer1 != 2
     
     
     switch choiceIntPlayer1 {
@@ -133,7 +133,7 @@ repeat{
         
         choiceIntPlayer2 = inputInt()
         print("")
-    }while(choiceIntPlayer2 != 1 || choiceIntPlayer2 != 2)
+    }while choiceIntPlayer2 != 1 && choiceIntPlayer2 != 2
    
     
     
@@ -166,10 +166,10 @@ repeat{
     player1.printName()
     print("")
     
-    var choiceP1 = readLine()
+    var choiceP1 = inputInt()
     print("")
     
-    if (Int(choiceP1!)! > 3 || Int(choiceP1!)! < 1 ) {
+    if (choiceP1 > 3 || choiceP1 < 1 ) {
         repeat{
             print("Mauvais choix")
             print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
@@ -177,10 +177,10 @@ repeat{
             player1.printName()
             print("")
             
-            choiceP1 = readLine()
+            choiceP1 = inputInt()
             print("")
             
-        }while(Int(choiceP1!)! > 3 || Int(choiceP1!)! < 1 )
+        }while choiceP1 > 3 || choiceP1 < 1
     }
     
     print("Recapitulatif de l'equipe adverse")
@@ -192,10 +192,10 @@ repeat{
     player2.printName()
     print("")
     
-    var newChoiceP1 = readLine()
+    var newChoiceP1 = inputInt()
     print("")
     
-    if (Int(newChoiceP1!)! > 3 || Int(newChoiceP1!)! < 1 ) {
+    if (newChoiceP1 > 3 || newChoiceP1 < 1 ) {
         repeat{
             print("Mauvais choix")
             print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
@@ -203,40 +203,40 @@ repeat{
             player2.printName()
             print("")
             
-            newChoiceP1 = readLine()
+            newChoiceP1 = inputInt()
             print("")
             
-        }while(Int(newChoiceP1!)! > 3 || Int(newChoiceP1!)! < 1 )
+        }while(newChoiceP1 > 3 || newChoiceP1 < 1 )
     }
-    switch Int(newChoiceP1!) {
+    switch newChoiceP1 {
     case 1:
-        player1.team[Int(choiceP1!)!].attack(player: player2.team[0])
+        player1.team[choiceP1].attack(player: player2.team[0])
         
         if player2.team[0].healthPoint <= 0{
             player2.removeCharacter(index: 0)
         }
         
-        totalHpPlayer2 -= player1.team[Int(choiceP1!)!].weapon.dammage
+        totalHpPlayer2 -= player1.team[choiceP1].weapon.dammage
         
     case 2:
         print(choiceP1)
         print(player2.team[1].name)
-        player1.team[Int(choiceP1!)!].attack(player: player2.team[1])
+        player1.team[choiceP1].attack(player: player2.team[1])
         
         if player2.team[1].healthPoint <= 0 {
             player2.removeCharacter(index: 1)
         }
         
-        totalHpPlayer2 -= player1.team[Int(choiceP1!)!].weapon.dammage
+        totalHpPlayer2 -= player1.team[choiceP1].weapon.dammage
         
     case 3:
-        player1.team[Int(choiceP1!)!].attack(player: player2.team[2])
+        player1.team[choiceP1].attack(player: player2.team[2])
         
         if player2.team[2].healthPoint <= 0 {
             player2.removeCharacter(index: 2)
         }
         
-        totalHpPlayer2 -= player1.team[Int(choiceP1!)!].weapon.dammage
+        totalHpPlayer2 -= player1.team[choiceP1].weapon.dammage
         
     default:
         fatalError()
@@ -254,10 +254,10 @@ repeat{
     player2.printName()
     print("")
     
-    var choiceP2 = readLine()
+    var choiceP2 = inputInt()
     print("")
     
-    if (Int(choiceP2!)! > 3 || Int(choiceP2!)! < 1 ) {
+    if (choiceP2 > 3 || choiceP2 < 1 ) {
         repeat{
             print("Mauvais choix")
             print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
@@ -265,10 +265,10 @@ repeat{
             player2.printName()
             print("")
             
-            choiceP2 = readLine()
+            choiceP2 = inputInt()
             print("")
             
-        }while(Int(choiceP2!)! > 3 || Int(choiceP2!)! < 1 )
+        }while( choiceP2 > 3 || choiceP2 < 1 )
     }
     
     print("Recapitulatif de l'equipe adverse")
@@ -280,10 +280,10 @@ repeat{
     player1.printName()
     print("")
     
-    var newChoiceP2 = readLine()
+    var newChoiceP2 = inputInt()
     print("")
     
-    if (Int(newChoiceP2!)! > 3 || Int(newChoiceP2!)! < 1 ) {
+    if (newChoiceP2 > 3 || newChoiceP2 < 1 ) {
         repeat{
             print("Mauvais choix")
             print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
@@ -291,39 +291,39 @@ repeat{
             player1.printName()
             print("")
             
-            newChoiceP2 = readLine()
+            newChoiceP2 = inputInt()
             print("")
             
-        }while(Int(newChoiceP2!)! > 3 || Int(newChoiceP2!)! < 1 )
+        }while(newChoiceP2 > 3 || newChoiceP2 < 1 )
     }
     
-    switch Int(newChoiceP2!) {
+    switch newChoiceP2 {
     case 1:
-        player2.team[Int(choiceP2!)!].attack(player: player1.team[0])
+        player2.team[choiceP2].attack(player: player1.team[0])
         
         if player1.team[0].healthPoint <= 0 {
             player1.removeCharacter(index: 0)
         }
         
-        totalHpPlayer1 -= player2.team[Int(choiceP2!)!].weapon.dammage
+        totalHpPlayer1 -= player2.team[choiceP2].weapon.dammage
         
     case 2:
-        player2.team[Int(choiceP2!)!].attack(player: player1.team[1])
+        player2.team[choiceP2].attack(player: player1.team[1])
         
         if player1.team[1].healthPoint <= 0 {
             player1.removeCharacter(index: 1)
         }
         
-        totalHpPlayer1 -= player2.team[Int(choiceP2!)!].weapon.dammage
+        totalHpPlayer1 -= player2.team[choiceP2].weapon.dammage
         
     case 3:
-        player2.team[Int(choiceP2!)!].attack(player: player1.team[2])
+        player2.team[choiceP2].attack(player: player1.team[2])
         
         if player1.team[2].healthPoint <= 0 {
             player1.removeCharacter(index: 2)
         }
         
-        totalHpPlayer1 -= player2.team[Int(choiceP2!)!].weapon.dammage
+        totalHpPlayer1 -= player2.team[choiceP2].weapon.dammage
         
     default:
         fatalError()
