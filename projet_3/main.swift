@@ -200,7 +200,7 @@ repeat{
         
         if newChoiceP1 != 1{
             repeat{
-                print("Mauvais choix cas ou il ne reste qu'un joueur")
+                print("Mauvais choix")
                 print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
                 
                 player2.printName()
@@ -225,7 +225,7 @@ repeat{
         
         if (newChoiceP1 != 1) && (newChoiceP1 != 2) {
             repeat{
-                print("Mauvais choix cas ou il ne reste que 2 joueurs")
+                print("Mauvais choix")
                 print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
                 
                 player2.printName()
@@ -265,7 +265,7 @@ repeat{
         
         if ( newChoiceP1 != 1) && (newChoiceP1 != 2) && (newChoiceP1 != 3){
             repeat{
-                print("Mauvais choix cas ou il reste tous les joueurs")
+                print("Mauvais choix ")
                 print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
                 
                 player2.printName()
