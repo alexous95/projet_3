@@ -101,6 +101,7 @@ repeat{
     
 }while(numberOfCharacters < 3)
 
+
 //On remet a zero la variable numberOfCharacters pour s'assurer qu'on aura bien 3 personnages pour le joueur 2
 numberOfCharacters = 0
 
@@ -210,33 +211,31 @@ repeat{
     }
     switch newChoiceP1 {
     case 1:
-        player1.team[choiceP1].attack(player: player2.team[0])
+        player1.team[choiceP1 - 1].attack(player: player2.team[0])
         
         if player2.team[0].healthPoint <= 0{
             player2.removeCharacter(index: 0)
         }
         
-        totalHpPlayer2 -= player1.team[choiceP1].weapon.dammage
+        totalHpPlayer2 -= player1.team[choiceP1 - 1].weapon.dammage
         
     case 2:
-        print(choiceP1)
-        print(player2.team[1].name)
-        player1.team[choiceP1].attack(player: player2.team[1])
+        player1.team[choiceP1 - 1].attack(player: player2.team[1])
         
         if player2.team[1].healthPoint <= 0 {
             player2.removeCharacter(index: 1)
         }
         
-        totalHpPlayer2 -= player1.team[choiceP1].weapon.dammage
+        totalHpPlayer2 -= player1.team[choiceP1 - 1].weapon.dammage
         
     case 3:
-        player1.team[choiceP1].attack(player: player2.team[2])
+        player1.team[choiceP1 - 1].attack(player: player2.team[2])
         
         if player2.team[2].healthPoint <= 0 {
             player2.removeCharacter(index: 2)
         }
         
-        totalHpPlayer2 -= player1.team[choiceP1].weapon.dammage
+        totalHpPlayer2 -= player1.team[choiceP1 - 1].weapon.dammage
         
     default:
         fatalError()
@@ -299,38 +298,36 @@ repeat{
     
     switch newChoiceP2 {
     case 1:
-        player2.team[choiceP2].attack(player: player1.team[0])
+        player2.team[choiceP2 - 1].attack(player: player1.team[0])
         
         if player1.team[0].healthPoint <= 0 {
             player1.removeCharacter(index: 0)
         }
         
-        totalHpPlayer1 -= player2.team[choiceP2].weapon.dammage
+        totalHpPlayer1 -= player2.team[choiceP2 - 1].weapon.dammage
         
     case 2:
-        player2.team[choiceP2].attack(player: player1.team[1])
+        player2.team[choiceP2 - 1].attack(player: player1.team[1])
         
         if player1.team[1].healthPoint <= 0 {
             player1.removeCharacter(index: 1)
         }
         
-        totalHpPlayer1 -= player2.team[choiceP2].weapon.dammage
+        totalHpPlayer1 -= player2.team[choiceP2 - 1].weapon.dammage
         
     case 3:
-        player2.team[choiceP2].attack(player: player1.team[2])
+        player2.team[choiceP2 - 1].attack(player: player1.team[2])
         
         if player1.team[2].healthPoint <= 0 {
             player1.removeCharacter(index: 2)
         }
         
-        totalHpPlayer1 -= player2.team[choiceP2].weapon.dammage
+        totalHpPlayer1 -= player2.team[choiceP2 - 1].weapon.dammage
         
     default:
         fatalError()
     }
     
-    
     numberOfRound += 1
     
-    
-}while(totalHpPlayer1 != 0 || totalHpPlayer2 != 0)
+}while(totalHpPlayer1 != 0 && totalHpPlayer2 != 0)
