@@ -156,7 +156,7 @@ repeat{
 
 //Cette boucle est la boucle principale du jeu qui permet de faire combattre les joueurs
 repeat{
-    print("Tour du joueur 1\n")
+    print("----------------------TOUR DU JOUEUR 1----------------------\n")
     
     print("Recapitulatif de l'equipe")
     player1.detailTeam()
@@ -314,7 +314,7 @@ repeat{
    
     
     // MARK: - TOUR JOUEUR 2
-    print("Tour du joueur 2\n")
+    print("----------------------TOUR DU JOUEUR 2----------------------\n")
     
     print("Recapitulatif de l'equipe")
     player2.detailTeam()
