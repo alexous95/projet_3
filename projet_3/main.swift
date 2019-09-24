@@ -197,6 +197,8 @@ repeat{
         totalHpPlayer2 -= player1.team[Int(choiceP1!)!].weapon.dammage
         
     case 2:
+        print(choiceP1)
+        print(player2.team[1].name)
         player1.team[Int(choiceP1!)!].attack(player: player2.team[1])
         
         if player2.team[1].healthPoint <= 0 {
