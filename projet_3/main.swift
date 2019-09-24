@@ -8,7 +8,7 @@
 
 import Foundation
 
-// MARK: - VARAIBLES
+// MARK: - VARIABLES
 
 // Ce sont les variables qui vont representer nos joueurs pendant la partie
 var player1 = Player()
@@ -27,6 +27,32 @@ var numberOfCharacters = 0
 var totalHpPlayer1 = 120
 var totalHpPlayer2 = 120
 
+//Represente les choix des deux utilisateurs
+var choiceStrPlayer1 : String
+var choiceIntPlayer1 : Int
+
+var choiceStrPlayer2 : String
+var choiceIntPlayer2 : Int
+
+// MARK: - FUNCTIONS
+//Fonctions permettant de lire une entre de l'utilisateur
+func inputInt() -> Int {
+    let readData = readLine()
+    
+    if let dataInt = readData {
+        return Int(dataInt)!
+    }
+    return 0
+}
+
+func inputStr() -> String {
+    let readData = readLine()
+    if let data = readData {
+        return data
+    }
+    return "On a un probleme"
+}
+
 //Cette boucle sert a l'initialisation des personnages du joueur 1
 print("Bienvenue dans le jeu du Projet numero 3\n")
 
@@ -36,43 +62,40 @@ print("Chaques personnages aura une arme qui servira a reduire les points de vie
 //MARK: - INITIALISATION JOUEUR 1
 repeat{
     print("Joueur 1 choisissez un nom pour votre personnage numero \(numberOfCharacters+1) :\n")
-    var inputName = readLine()
+    choiceStrPlayer1 = inputStr()
     print("")
     
-    if inputName != nil {
-        if nameArray.contains(inputName!){
-            repeat {
-                print("Ce nom a deja ete choisi")
-                print("Choisissez-en un autre")
-                inputName = readLine()
-                print("")
-            }while(nameArray.contains(inputName!))
-        }
+    if nameArray.contains(choiceStrPlayer1){
+        repeat {
+            print("Ce nom a deja ete choisi")
+            print("Choisissez-en un autre")
+            choiceStrPlayer1 = inputStr()
+            print("")
+            
+        }while(nameArray.contains(choiceStrPlayer1))
     }
-    nameArray.append(inputName!)
+    nameArray.append(choiceStrPlayer1)
     
     print("Joueur 1 choisissez une arme pour votre personnage numero \(numberOfCharacters+1) :")
-    print("Choisissez un nombre correspondant a l'arme desirer :")
-    print("1 : Epée")
-    print("2 : Fusil")
-    print("")
+    repeat{
+        print("Choisissez un nombre correspondant a l'arme desirer :")
+        print("1 : Epée")
+        print("2 : Fusil")
+        print("")
+        choiceIntPlayer1 = inputInt()
+        print("")
+    }while(choiceIntPlayer1 != 1 || choiceIntPlayer1 != 2)
     
-    let weaponInput = readLine()
-    print("")
     
-    if let weapon = weaponInput{
-        switch Int(weapon) {
-        case 1:
-            if inputName != nil {
-                player1.team.append(Character(name: inputName!, weapon: Sword()))
-            }
-        case 2 :
-            if inputName != nil {
-                player1.team.append(Character(name: inputName!, weapon: Gun()))
-            }
-        default:
-            fatalError()
-        }
+    switch choiceIntPlayer1 {
+    case 1:
+            player1.team.append(Character(name: choiceStrPlayer1, weapon: Sword()))
+        
+    case 2 :
+            player1.team.append(Character(name: choiceStrPlayer1, weapon: Gun()))
+        
+    default:
+        fatalError()
     }
     numberOfCharacters += 1
     
@@ -86,44 +109,43 @@ numberOfCharacters = 0
 //Cette boucle sert a l'initialisation du joueur 2
 repeat{
     print("Joueur 2 choisissez un nom pour votre personnage numero \(numberOfCharacters+1) :\n")
-    var inputName = readLine()
+    choiceStrPlayer2 = inputStr()
     print("")
     
-    if inputName != nil {
-        if nameArray.contains(inputName!){
-            repeat {
-                print("Ce nom a deja ete choisi")
-                print("Choisissez-en un autre")
-                inputName = readLine()
-                print("")
-                
-            }while(nameArray.contains(inputName!))
-        }
+    if nameArray.contains(choiceStrPlayer2){
+        repeat {
+            print("Ce nom a deja ete choisi")
+            print("Choisissez-en un autre")
+            choiceStrPlayer2 = inputStr()
+            print("")
+            
+        }while(nameArray.contains(choiceStrPlayer2))
     }
-    nameArray.append(inputName!)
+    nameArray.append(choiceStrPlayer2)
     
     print("Joueur 2 choisissez une arme pour votre personnage numero \(numberOfCharacters+1) :")
-    print("Choisissez un nombre correspondant a l'arme desirer :")
-    print("1 : Epée")
-    print("2 : Fusil")
-    print("")
     
-    let weaponInput = readLine()
-    print("")
+    repeat{
+        print("Choisissez un nombre correspondant a l'arme desirer :")
+        print("1 : Epée")
+        print("2 : Fusil")
+        print("")
+        
+        choiceIntPlayer2 = inputInt()
+        print("")
+    }while(choiceIntPlayer2 != 1 || choiceIntPlayer2 != 2)
+   
     
-    if let weapon = weaponInput{
-        switch Int(weapon) {
-        case 1:
-            if inputName != nil {
-                player2.team.append(Character(name: inputName!, weapon: Sword()))
-            }
-        case 2 :
-            if inputName != nil {
-                player2.team.append(Character(name: inputName!, weapon: Gun()))
-            }
-        default:
-            fatalError()
-        }
+    
+    switch choiceIntPlayer2 {
+    case 1:
+        player2.team.append(Character(name: choiceStrPlayer2, weapon: Sword()))
+        
+    case 2 :
+        player2.team.append(Character(name: choiceStrPlayer2, weapon: Gun()))
+        
+    default:
+        fatalError()
     }
     numberOfCharacters += 1
     
