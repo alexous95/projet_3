@@ -34,13 +34,7 @@ class Character {
     func changeWeapon(newWeapon : Weapon){
         self.weapon = newWeapon
     }
-    
-    func input() -> Int {
-        let readData = readLine()
-        
-        return Int(readData!)!
-    }
-    
+ 
     //Fonction de soin qui apparait de maniere aleatoire
     func heal(player : Character){
         self.healthPoint += 20
