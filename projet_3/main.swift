@@ -155,106 +155,104 @@ repeat{
 // MARK: - TOUR JOUEUR 1
 
 //Cette boucle est la boucle principale du jeu qui permet de faire combattre les joueurs
+var choiceP1 : Int = 0
+var newChoiceP1 : Int = 0
+
+var choiceP2 : Int = 0
+var newChoiceP2 : Int = 0
+
 repeat{
+    // On verifie que chaque team a encore des joueurs sinon on quitte la boucle de jeu
+    if player1.team.count == 0{
+        numberOfRound += 1
+        break
+    }
     print("----------------------TOUR DU JOUEUR 1----------------------\n")
     
-    print("Recapitulatif de l'equipe")
+    
+    
+    print("RECAPITULATIF DE L'EQUIPE")
     player1.detailTeam()
     print("")
     
-    print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
-    
-    player1.printName()
+    print("Que voulez-vous faire ?")
+    print("1: Attaquer")
+    print("2: Se Soigner")
     print("")
     
-    var choiceP1 = inputInt()
+    let action = inputInt()
     print("")
     
-    if (choiceP1 > 3 || choiceP1 < 1 ) {
-        repeat{
-            print("Mauvais choix")
-            print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
+    switch action {
+        
+    // Si le joueur choisis 1 alors il choisie d'attaquer
+    // Cela correspond au premier cas de notre switch
+    case 1:
+        print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
+        
+        player1.printName()
+        print("")
+        
+        // On regarde combien il reste de joueur dans le tableau du joueur et en fonction de ce resultat
+        // on contraint le joueur a choisir un numero compris entre 1 et 3
+        
+        // MARK: - ATTAQUE
+        
+        switch player1.team.count{
             
-            player1.printName()
+        // Dans le cas ou on a qu'un seul joueur le choix est forcement 1
+            
+        case 1:
+            choiceP1 = inputInt()
             print("")
+            if choiceP1 != 1 {
+                repeat{
+                    print("Mauvais choix")
+                    print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
+                    
+                    player1.printName()
+                    print("")
+                    
+                    choiceP1 = inputInt()
+                    print("")
+                }while choiceP1 != 1
+            }
             
+        // Dans le cas ou on a deux joueurs le choix est 1 ou 2
+        case 2:
             choiceP1 = inputInt()
             print("")
             
-        }while choiceP1 > 3 || choiceP1 < 1
-    }
-    
-    print("Recapitulatif de l'equipe adverse")
-    player2.detailTeam()
-    print("")
-    
-    print("Choisissez le numero du personnage a attaquer\n")
-    
-    player2.printName()
-    print("")
-    
-    switch player2.team.count {
-    case 1:
-        var newChoiceP1 = inputInt()
-        print("")
-        
-        if newChoiceP1 != 1{
-            repeat{
-                print("Mauvais choix")
-                print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
-                
-                player2.printName()
-                print("")
-                
-                newChoiceP1 = inputInt()
-                print("")
-                
-            }while newChoiceP1 != 1
-        }
-        player1.team[choiceP1 - 1].attack(player: player2.team[0])
-        
-        if player2.team[0].healthPoint <= 0{
-            player2.removeCharacter(index: 0)
-        }
-        
-        totalHpPlayer2 -= player1.team[choiceP1 - 1].weapon.dammage
-        
-    case 2:
-        var newChoiceP1 = inputInt()
-        print("")
-        
-        if (newChoiceP1 != 1) && (newChoiceP1 != 2) {
-            repeat{
-                print("Mauvais choix")
-                print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
-                
-                player2.printName()
-                print("")
-                
-                newChoiceP1 = inputInt()
-                print("")
-                
-            }while (newChoiceP1 != 1) && (newChoiceP1 != 2)
-        }
-        
-        switch newChoiceP1 {
-        case 1:
-            player1.team[choiceP1 - 1].attack(player: player2.team[0])
-            
-            if player2.team[0].healthPoint <= 0{
-                player2.removeCharacter(index: 0)
+            if (choiceP1 != 1) && (choiceP1 != 2){
+                repeat{
+                    print("Mauvais choix")
+                    print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
+                    
+                    player1.printName()
+                    print("")
+                    
+                    choiceP1 = inputInt()
+                    print("")
+                }while (choiceP1 != 1) && (choiceP1 != 2)
             }
             
-            totalHpPlayer2 -= player1.team[choiceP1 - 1].weapon.dammage
+        // Dans le cas ou tous les joueurs sont vivant le choix est 1, 2 ou 3
+        case 3:
+            choiceP1 = inputInt()
+            print("")
             
-        case 2:
-            player1.team[choiceP1 - 1].attack(player: player2.team[1])
-            
-            if player2.team[1].healthPoint <= 0 {
-                player2.removeCharacter(index: 1)
+            if (choiceP1 != 1) && (choiceP1 != 2) && (choiceP1 != 3){
+                repeat{
+                    print("Mauvais choix")
+                    print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
+                    
+                    player1.printName()
+                    print("")
+                    
+                    choiceP1 = inputInt()
+                    print("")
+                }while (choiceP1 != 1) && (choiceP1 != 2) && (choiceP1 != 3)
             }
-            
-            totalHpPlayer2 -= player1.team[choiceP1 - 1].weapon.dammage
         default:
             break
         }
@@ -276,8 +274,35 @@ repeat{
                 
             }while (newChoiceP1 != 1) && (newChoiceP1 != 2) && (newChoiceP1 != 3)
         }
-        switch newChoiceP1 {
+        
+        print("Recapitulatif de l'equipe adverse")
+        player2.detailTeam()
+        print("")
+        
+        print("Choisissez le numero du personnage a attaquer\n")
+        
+        player2.printName()
+        print("")
+        
+        // Ce switch permet de contraindre l'utilisateur a attaquer seulement les personnages encore en vie
+        switch player2.team.count {
         case 1:
+            newChoiceP1 = inputInt()
+            print("")
+            
+            if newChoiceP1 != 1{
+                repeat{
+                    print("Mauvais choix cas ou il ne reste qu'un joueur")
+                    print("Choisissez le numero du personnage que vous souhaitez attaquer\n")
+                    
+                    player2.printName()
+                    print("")
+                    
+                    newChoiceP1 = inputInt()
+                    print("")
+                    
+                }while newChoiceP1 != 1
+            }
             player1.team[choiceP1 - 1].attack(player: player2.team[0])
             
             if player2.team[0].healthPoint <= 0{
@@ -287,22 +312,256 @@ repeat{
             totalHpPlayer2 -= player1.team[choiceP1 - 1].weapon.dammage
             
         case 2:
-            player1.team[choiceP1 - 1].attack(player: player2.team[1])
+            newChoiceP1 = inputInt()
+            print("")
             
-            if player2.team[1].healthPoint <= 0 {
-                player2.removeCharacter(index: 1)
+            if (newChoiceP1 != 1) && (newChoiceP1 != 2) {
+                repeat{
+                    print("Mauvais choix cas ou il ne reste que 2 joueurs")
+                    print("Choisissez le numero du personnage que vous souhaitez attaquer\n")
+                    
+                    player2.printName()
+                    print("")
+                    
+                    newChoiceP1 = inputInt()
+                    print("")
+                    
+                }while (newChoiceP1 != 1) && (newChoiceP1 != 2)
             }
             
-            totalHpPlayer2 -= player1.team[choiceP1 - 1].weapon.dammage
+            switch newChoiceP1 {
+            case 1:
+                player1.team[choiceP1 - 1].attack(player: player2.team[0])
+                
+                if player2.team[0].healthPoint <= 0{
+                    player2.removeCharacter(index: 0)
+                }
+                
+                totalHpPlayer2 -= player1.team[choiceP1 - 1].weapon.dammage
+                
+            case 2:
+                player1.team[choiceP1 - 1].attack(player: player2.team[1])
+                
+                if player2.team[1].healthPoint <= 0 {
+                    player2.removeCharacter(index: 1)
+                }
+                
+                totalHpPlayer2 -= player1.team[choiceP1 - 1].weapon.dammage
+            default:
+                break
+            }
             
         case 3:
-            player1.team[choiceP1 - 1].attack(player: player2.team[2])
+            newChoiceP1 = inputInt()
+            print("")
             
-            if player2.team[2].healthPoint <= 0 {
-                player2.removeCharacter(index: 2)
+            if ( newChoiceP1 != 1) && (newChoiceP1 != 2) && (newChoiceP1 != 3){
+                repeat{
+                    print("Mauvais choix cas ou il reste tous les joueurs")
+                    print("Choisissez le numero du personnage que vous souhaitez attaquer\n")
+                    
+                    player2.printName()
+                    print("")
+                    
+                    newChoiceP1 = inputInt()
+                    print("")
+                    
+                }while (newChoiceP1 != 1) && (newChoiceP1 != 2) && (newChoiceP1 != 3)
+            }
+            switch newChoiceP1 {
+            case 1:
+                player1.team[choiceP1 - 1].attack(player: player2.team[0])
+                
+                if player2.team[0].healthPoint <= 0{
+                    player2.removeCharacter(index: 0)
+                }
+                
+                totalHpPlayer2 -= player1.team[choiceP1 - 1].weapon.dammage
+                
+            case 2:
+                player1.team[choiceP1 - 1].attack(player: player2.team[1])
+                
+                if player2.team[1].healthPoint <= 0 {
+                    player2.removeCharacter(index: 1)
+                }
+                
+                totalHpPlayer2 -= player1.team[choiceP1 - 1].weapon.dammage
+                
+            case 3:
+                player1.team[choiceP1 - 1].attack(player: player2.team[2])
+                
+                if player2.team[2].healthPoint <= 0 {
+                    player2.removeCharacter(index: 2)
+                }
+                
+                totalHpPlayer2 -= player1.team[choiceP1 - 1].weapon.dammage
+                
+            default:
+                break
             }
             
-            totalHpPlayer2 -= player1.team[choiceP1 - 1].weapon.dammage
+        default:
+            break
+        }
+        
+    // Si le joueur choisi 2 alors il choisie de soigner
+    // Cela correspond au cas numero 2 de notre switch
+        
+    // MARK: - SOIN
+        
+    case 2:
+        print("Choisissez le numero du personnage que vous souhaitez utiliser pour le soin\n")
+        
+        player1.printName()
+        print("")
+        
+        //Ce switch permet de forcer l'utilisateur a choisir exactement les joueurs encore en vie
+        //On ne peut pas ressuciter de perssonnage
+        
+        switch player1.team.count {
+        case 1:
+            choiceP1 = inputInt()
+            print("")
+            
+            if choiceP1 != 1 {
+                repeat{
+                    print("Mauvais choix")
+                    print("Choisissez le numero du personnage que vous utiliser pour le soin\n")
+                    
+                    player1.printName()
+                    print("")
+                    
+                    choiceP1 = inputInt()
+                    print("")
+                }while choiceP1 != 1
+            }
+            
+        case 2:
+            choiceP1 = inputInt()
+            print("")
+            
+            if choiceP1 != 1 && choiceP1 != 2 {
+                repeat{
+                    print("Mauvais choix")
+                    print("Choisissez le numero du personnage que vous utiliser pour le soin\n")
+                    
+                    player1.printName()
+                    print("")
+                    
+                    choiceP1 = inputInt()
+                    print("")
+                }while choiceP1 != 1 && choiceP1 != 2
+            }
+            
+        case 3:
+            choiceP1 = inputInt()
+            print("")
+            
+            if choiceP1 != 1 && choiceP1 != 2 && choiceP1 != 3 {
+                repeat{
+                    print("Mauvais choix")
+                    print("Choisissez le numero du personnage que vous utiliser pour le soin\n")
+                    
+                    player1.printName()
+                    print("")
+                    
+                    choiceP1 = inputInt()
+                    print("")
+                }while choiceP1 != 1 && choiceP1 != 2 && choiceP1 != 3
+            }
+        default:
+            break
+        }
+        
+        print("Recapitulatif de l'équipe")
+        player1.printName()
+        print("")
+        
+        print("Choisissez le numero du personnage à soigner\n")
+        
+        player1.printName()
+        print("")
+        
+        // Ce switch permet de choisir le personnage qui sera soigner
+        switch player2.team.count {
+        case 1:
+            newChoiceP1 = inputInt()
+            print("")
+            
+            if newChoiceP1 != 1{
+                repeat{
+                    print("Mauvais choix")
+                    print("Choisissez le numero du personnage que vous souhaitez soigner\n")
+                    
+                    player1.printName()
+                    print("")
+                    
+                    newChoiceP1 = inputInt()
+                    print("")
+                    
+                }while newChoiceP1 != 1
+            }
+            player1.team[choiceP1 - 1].heal(player: player1.team[newChoiceP1 - 1])
+            
+        case 2:
+            newChoiceP1 = inputInt()
+            print("")
+            
+            if (newChoiceP1 != 1) && (newChoiceP1 != 2) {
+                repeat{
+                    print("Mauvais choix")
+                    print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
+                    
+                    player1.printName()
+                    print("")
+                    
+                    newChoiceP1 = inputInt()
+                    print("")
+                    
+                }while (newChoiceP1 != 1) && (newChoiceP1 != 2)
+            }
+            
+            switch newChoiceP1 {
+            case 1:
+                player1.team[choiceP1 - 1].heal(player: player1.team[newChoiceP1 - 1])
+                
+            case 2:
+                player1.team[choiceP1 - 1].heal(player: player1.team[newChoiceP1 - 1])
+                
+            default:
+                break
+            }
+            
+        case 3:
+            newChoiceP1 = inputInt()
+            print("")
+            
+            if ( newChoiceP1 != 1) && (newChoiceP1 != 2) && (newChoiceP1 != 3){
+                repeat{
+                    print("Mauvais choix")
+                    print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
+                    
+                    player1.printName()
+                    print("")
+                    
+                    newChoiceP1 = inputInt()
+                    print("")
+                    
+                }while (newChoiceP1 != 1) && (newChoiceP1 != 2) && (newChoiceP1 != 3)
+            }
+            switch newChoiceP1 {
+            case 1:
+                player1.team[choiceP1 - 1].heal(player: player1.team[newChoiceP1 - 1])
+                
+            case 2:
+                player1.team[choiceP1 - 1].heal(player: player1.team[newChoiceP1 - 1])
+                
+            case 3:
+                player1.team[choiceP1 - 1].heal(player: player1.team[newChoiceP1 - 1])
+                
+            default:
+                break
+            }
             
         default:
             break
@@ -311,156 +570,390 @@ repeat{
     default:
         break
     }
+    
    
     
     // MARK: - TOUR JOUEUR 2
+    // On verifie que chaque team a encore des joueurs sinon on quitte la boucle de jeu
+    if player2.team.count <= 0{
+        numberOfRound += 1
+        break
+    }
     print("----------------------TOUR DU JOUEUR 2----------------------\n")
     
     print("Recapitulatif de l'equipe")
     player2.detailTeam()
     print("")
     
-    print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
-    
-    player2.printName()
+    print("Que voulez-vous faire ?")
+    print("1: Attaquer")
+    print("2: Se Soigner")
     print("")
     
-    var choiceP2 = inputInt()
+    let action2 = inputInt()
     print("")
     
-    if (choiceP2 > 3 || choiceP2 < 1 ) {
-        repeat{
-            print("Mauvais choix")
-            print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
-            
-            player2.printName()
-            print("")
-            
-            choiceP2 = inputInt()
-            print("")
-            
-        }while( choiceP2 > 3 || choiceP2 < 1 )
-    }
-    
-    print("Recapitulatif de l'equipe adverse")
-    player1.detailTeam()
-    print("")
-    
-    print("Choisissez le numero du personnage a attaquer\n")
-    
-    player1.printName()
-    print("")
-    
-     switch player1.team.count {
+    switch action2 {
+           
+       // Si le joueur choisis 1 alors il choisie d'attaquer
+       // Cela correspond au premier cas de notre switch
        case 1:
-           var newChoiceP2 = inputInt()
+           print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
+           
+           player2.printName()
            print("")
            
-           if newChoiceP2 != 1{
-               repeat{
-                   print("Mauvais choix")
-                   print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
-                   
-                   player1.printName()
-                   print("")
-                   
-                   newChoiceP2 = inputInt()
-                   print("")
-                   
-               }while newChoiceP2 != 1
-           }
-           player2.team[choiceP2 - 1].attack(player: player1.team[0])
+           // On regarde combien il reste de joueur dans le tableau du joueur et en fonction de ce resultat
+           // on contraint le joueur a choisir un numero compris entre 1 et 3
            
-           if player1.team[0].healthPoint <= 0{
-               player1.removeCharacter(index: 0)
-           }
+           // MARK: - ATTAQUE
            
-           totalHpPlayer1 -= player2.team[choiceP2 - 1].weapon.dammage
-           
-       case 2:
-           var newChoiceP2 = inputInt()
-           print("")
-           
-           if (newChoiceP2 != 1) && (newChoiceP2 != 2) {
-               repeat{
-                   print("Mauvais choix")
-                   print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
-                   
-                   player1.printName()
-                   print("")
-                   
-                   newChoiceP2 = inputInt()
-                   print("")
-                   
-               }while (newChoiceP2 != 1) && (newChoiceP2 != 2)
-           }
-           
-           switch newChoiceP2 {
+           switch player2.team.count{
+               
+           // Dans le cas ou on a qu'un seul joueur le choix est forcement 1
+               
            case 1:
-               player2.team[choiceP2 - 1].attack(player: player1.team[0])
-               
-               if player1.team[0].healthPoint <= 0{
-                   player1.removeCharacter(index: 0)
+               choiceP2 = inputInt()
+               print("")
+               if choiceP2 != 1 {
+                   repeat{
+                       print("Mauvais choix")
+                       print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
+                       
+                       player2.printName()
+                       print("")
+                       
+                       choiceP2 = inputInt()
+                       print("")
+                   }while choiceP2 != 1
                }
                
-               totalHpPlayer1 -= player2.team[choiceP2 - 1].weapon.dammage
-               
+           // Dans le cas ou on a deux joueurs le choix est 1 ou 2
            case 2:
-               player2.team[choiceP2 - 1].attack(player: player1.team[1])
+               choiceP2 = inputInt()
+               print("")
                
-               if player1.team[1].healthPoint <= 0 {
-                   player1.removeCharacter(index: 1)
+               if (choiceP2 != 1) && (choiceP2 != 2){
+                   repeat{
+                       print("Mauvais choix")
+                       print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
+                       
+                       player2.printName()
+                       print("")
+                       
+                       choiceP2 = inputInt()
+                       print("")
+                   }while (choiceP2 != 1) && (choiceP2 != 2)
                }
                
-               totalHpPlayer1 -= player1.team[choiceP2 - 1].weapon.dammage
+           // Dans le cas ou tous les joueurs sont vivant le choix est 1, 2 ou 3
+           case 3:
+               choiceP2 = inputInt()
+               print("")
+               
+               if (choiceP2 != 1) && (choiceP2 != 2) && (choiceP2 != 3){
+                   repeat{
+                       print("Mauvais choix")
+                       print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
+                       
+                       player2.printName()
+                       print("")
+                       
+                       choiceP2 = inputInt()
+                       print("")
+                   }while (choiceP2 != 1) && (choiceP2 != 2) && (choiceP2 != 3)
+               }
            default:
                break
            }
            
-       case 3:
-           var newChoiceP2 = inputInt()
+           print("Recapitulatif de l'equipe adverse")
+           player1.detailTeam()
            print("")
            
-           if (newChoiceP2 != 1) && (newChoiceP2 != 2) && (newChoiceP2 != 3) {
-               repeat{
-                   print("Mauvais choix")
-                   print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
-                   
-                   player1.printName()
-                   print("")
-                   
-                   newChoiceP2 = inputInt()
-                   print("")
-                   
-               }while (newChoiceP2 != 1) && (newChoiceP2 != 2) && (newChoiceP2 != 3)
-           }
-           switch newChoiceP2 {
+           print("Choisissez le numero du personnage a attaquer\n")
+           
+           player1.printName()
+           print("")
+           
+           // Ce switch permet de contraindre l'utilisateur a attaquer seulement les personnages encore en vie
+           switch player1.team.count {
            case 1:
+               newChoiceP2 = inputInt()
+               print("")
+               
+               if newChoiceP2 != 1{
+                   repeat{
+                       print("Mauvais choix cas ou il ne reste qu'un joueur")
+                       print("Choisissez le numero du personnage que vous souhaitez attaquer\n")
+                       
+                       player1.printName()
+                       print("")
+                       
+                       newChoiceP2 = inputInt()
+                       print("")
+                       
+                   }while newChoiceP2 != 1
+               }
                player2.team[choiceP2 - 1].attack(player: player1.team[0])
                
                if player1.team[0].healthPoint <= 0{
                    player1.removeCharacter(index: 0)
                }
                
-               totalHpPlayer1 -= player2.team[choiceP2 - 1].weapon.dammage
+               totalHpPlayer1 -= player2.team[choiceP1 - 1].weapon.dammage
                
            case 2:
-               player2.team[choiceP2 - 1].attack(player: player1.team[1])
+               newChoiceP2 = inputInt()
+               print("")
                
-               if player1.team[1].healthPoint <= 0 {
-                   player1.removeCharacter(index: 1)
+               if (newChoiceP2 != 1) && (newChoiceP2 != 2) {
+                   repeat{
+                       print("Mauvais choix cas ou il ne reste que 2 joueurs")
+                       print("Choisissez le numero du personnage que vous souhaitez attaquer\n")
+                       
+                       player1.printName()
+                       print("")
+                       
+                       newChoiceP2 = inputInt()
+                       print("")
+                       
+                   }while (newChoiceP2 != 1) && (newChoiceP2 != 2)
                }
                
-               totalHpPlayer1 -= player2.team[choiceP2 - 1].weapon.dammage
+               switch newChoiceP1 {
+               case 1:
+                   player2.team[choiceP2 - 1].attack(player: player1.team[0])
+                   
+                   if player1.team[0].healthPoint <= 0{
+                       player1.removeCharacter(index: 0)
+                   }
+                   
+                   totalHpPlayer1 -= player2.team[choiceP1 - 1].weapon.dammage
+                   
+               case 2:
+                   player2.team[choiceP2 - 1].attack(player: player1.team[1])
+                   
+                   if player1.team[1].healthPoint <= 0 {
+                       player1.removeCharacter(index: 1)
+                   }
+                   
+                   totalHpPlayer1 -= player2.team[choiceP1 - 1].weapon.dammage
+               default:
+                   break
+               }
                
            case 3:
-               player2.team[choiceP2 - 1].attack(player: player1.team[2])
+               newChoiceP2 = inputInt()
+               print("")
                
-               if player1.team[2].healthPoint <= 0 {
-                   player1.removeCharacter(index: 2)
+               if ( newChoiceP2 != 1) && (newChoiceP2 != 2) && (newChoiceP2 != 3){
+                   repeat{
+                       print("Mauvais choix")
+                       print("Choisissez le numero du personnage que vous souhaitez attaquer\n")
+                       
+                       player1.printName()
+                       print("")
+                       
+                       newChoiceP2 = inputInt()
+                       print("")
+                       
+                   }while (newChoiceP2 != 1) && (newChoiceP2 != 2) && (newChoiceP2 != 3)
+               }
+               switch newChoiceP2 {
+               case 1:
+                   player2.team[choiceP2 - 1].attack(player: player1.team[0])
+                   
+                   if player1.team[0].healthPoint <= 0{
+                       player1.removeCharacter(index: 0)
+                   }
+                   
+                   totalHpPlayer1 -= player2.team[choiceP2 - 1].weapon.dammage
+                   
+               case 2:
+                   player2.team[choiceP2 - 1].attack(player: player1.team[1])
+                   
+                   if player1.team[1].healthPoint <= 0 {
+                       player1.removeCharacter(index: 1)
+                   }
+                   
+                   totalHpPlayer1 -= player2.team[choiceP1 - 1].weapon.dammage
+                   
+               case 3:
+                   player2.team[choiceP2 - 1].attack(player: player1.team[2])
+                   
+                   if player1.team[2].healthPoint <= 0 {
+                       player1.removeCharacter(index: 2)
+                   }
+                   
+                   totalHpPlayer1 -= player2.team[choiceP1 - 1].weapon.dammage
+                   
+               default:
+                   break
                }
                
-               totalHpPlayer1 -= player2.team[choiceP2 - 1].weapon.dammage
+           default:
+               break
+           }
+           
+       // Si le joueur choisi 2 alors il choisie de soigner
+       // Cela correspond au cas numero 2 de notre switch
+           
+       // MARK: - SOIN
+           
+       case 2:
+           print("Choisissez le numero du personnage que vous souhaitez utiliser pour le soin\n")
+           
+           player2.printName()
+           print("")
+           
+           //Ce switch permet de forcer l'utilisateur a choisir exactement les joueurs encore en vie
+           //On ne peut pas ressuciter de perssonnage
+           
+           switch player2.team.count {
+           case 1:
+               choiceP2 = inputInt()
+               print("")
+               
+               if choiceP2 != 1 {
+                   repeat{
+                       print("Mauvais choix")
+                       print("Choisissez le numero du personnage que vous utiliser pour le soin\n")
+                       
+                       player2.printName()
+                       print("")
+                       
+                       choiceP2 = inputInt()
+                       print("")
+                   }while choiceP2 != 1
+               }
+               
+           case 2:
+               choiceP2 = inputInt()
+               print("")
+               
+               if choiceP2 != 1 && choiceP2 != 2 {
+                   repeat{
+                       print("Mauvais choix")
+                       print("Choisissez le numero du personnage que vous utiliser pour le soin\n")
+                       
+                       player2.printName()
+                       print("")
+                       
+                       choiceP2 = inputInt()
+                       print("")
+                   }while choiceP2 != 1 && choiceP2 != 2
+               }
+               
+           case 3:
+               choiceP2 = inputInt()
+               print("")
+               
+               if choiceP2 != 1 && choiceP2 != 2 && choiceP2 != 3 {
+                   repeat{
+                       print("Mauvais choix")
+                       print("Choisissez le numero du personnage que vous utiliser pour le soin\n")
+                       
+                       player2.printName()
+                       print("")
+                       
+                       choiceP2 = inputInt()
+                       print("")
+                   }while choiceP2 != 1 && choiceP2 != 2 && choiceP2 != 3
+               }
+           default:
+               break
+           }
+           
+           print("Recapitulatif de l'équipe")
+           player2.printName()
+           print("")
+           
+           print("Choisissez le numero du personnage à soigner\n")
+           
+           player2.printName()
+           print("")
+           
+           // Ce switch permet de choisir le personnage qui sera soigner
+           switch player2.team.count {
+           case 1:
+               newChoiceP2 = inputInt()
+               print("")
+               
+               if newChoiceP2 != 1{
+                   repeat{
+                       print("Mauvais choix")
+                       print("Choisissez le numero du personnage que vous souhaitez soigner\n")
+                       
+                       player2.printName()
+                       print("")
+                       
+                       newChoiceP2 = inputInt()
+                       print("")
+                       
+                   }while newChoiceP2 != 1
+               }
+               player2.team[choiceP2 - 1].heal(player: player2.team[newChoiceP2 - 1])
+               
+           case 2:
+               newChoiceP2 = inputInt()
+               print("")
+               
+               if (newChoiceP2 != 1) && (newChoiceP2 != 2) {
+                   repeat{
+                       print("Mauvais choix")
+                       print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
+                       
+                       player2.printName()
+                       print("")
+                       
+                       newChoiceP2 = inputInt()
+                       print("")
+                       
+                   }while (newChoiceP2 != 1) && (newChoiceP2 != 2)
+               }
+               
+               switch newChoiceP2 {
+               case 1:
+                   player2.team[choiceP2 - 1].heal(player: player2.team[newChoiceP2 - 1])
+                   
+               case 2:
+                   player2.team[choiceP2 - 1].heal(player: player1.team[newChoiceP2 - 1])
+                   
+               default:
+                   break
+               }
+               
+           case 3:
+               newChoiceP2 = inputInt()
+               print("")
+               
+               if ( newChoiceP2 != 1) && (newChoiceP2 != 2) && (newChoiceP2 != 3){
+                   repeat{
+                       print("Mauvais choix")
+                       print("Choisissez le numero du personnage que vous souhaitez faire attaquer\n")
+                       
+                       player2.printName()
+                       print("")
+                       
+                       newChoiceP2 = inputInt()
+                       print("")
+                       
+                   }while (newChoiceP2 != 1) && (newChoiceP2 != 2) && (newChoiceP2 != 3)
+               }
+               switch newChoiceP2 {
+               case 1:
+                   player2.team[choiceP2 - 1].heal(player: player2.team[newChoiceP2 - 1])
+                   
+               case 2:
+                   player2.team[choiceP2 - 1].heal(player: player2.team[newChoiceP2 - 1])
+                   
+               case 3:
+                   player2.team[choiceP2 - 1].heal(player: player2.team[newChoiceP2 - 1])
+                   
+               default:
+                   break
+               }
                
            default:
                break
@@ -472,7 +965,7 @@ repeat{
     
     numberOfRound += 1
     
-}while(totalHpPlayer1 != 0 && totalHpPlayer2 != 0)
+}while (player1.team.count > 0 && player2.team.count > 0)
 
 if player1.team.count > 0 {
     print("Le joueur 1 a gagné la partie en \(numberOfRound) tour")

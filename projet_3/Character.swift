@@ -42,7 +42,7 @@ class Character {
     }
     
     //Fonction de soin qui apparait de maniere aleatoire
-    func heal(){
-        self.healthPoint += 10
+    func heal(player : Character){
+        self.healthPoint += 20
     }
 }
