@@ -20,7 +20,7 @@ class Gun : Weapon {
     
     override func description(){
         super.description()
-        print("Je suis de type fusil et j'inflige \(self.dammage) dégats")
+        print("I am a gun and i deal \(self.dammage) dammage")
     }
     
 

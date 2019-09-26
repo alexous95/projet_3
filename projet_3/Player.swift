@@ -10,13 +10,13 @@ import Foundation
 
 class Player {
     
-    //La variable team contiendra les 3 personnages de chaques joueurs
+    //Create an array wich contains the 3 characters of each player
     var team : [Character] = []
     
     
     func detailTeam(){
         for chara in team {
-            print("Nom du personnage : \(chara.name)\t Point de vie : \(chara.healthPoint)")
+            print("Character's name : \(chara.name)\t HealthPoint : \(chara.healthPoint)")
         }
     }
     

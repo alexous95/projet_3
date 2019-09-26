@@ -24,6 +24,6 @@ class InputManager {
         if let data = readData {
             return data
         }
-        return "On a un probleme"
+        return "We have a problem"
     }
 }

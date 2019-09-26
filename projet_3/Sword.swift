@@ -20,7 +20,7 @@ class Sword : Weapon {
     
     override func description(){
         super.description()
-        print("Je suis de type épée et j'inflige \(self.dammage) dégats")
+        print("I am a sword and i deal \(self.dammage) dammage")
     }
     
     

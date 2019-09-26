@@ -11,16 +11,16 @@ import Foundation
 class Weapon {
     // MARK: - VARIABLES
     
-    //On crée une variable de int qui contiendra les degats qu'infligera l'arme
+    //Variable which hold the dammage of the weapon
     var dammage : Int
     
-    //La fonction Init qui initialise notre classe 
+    //Init function wich initialize our weapon
     init(dammage : Int){
         self.dammage = dammage
     }
     
     func description(){
-        print("Je suis une arme")
+        print("I'm a weapon")
     }
     
 }

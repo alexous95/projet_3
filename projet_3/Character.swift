@@ -10,32 +10,32 @@ import Foundation
 
 class Character {
     
-    //Creation de la variable name qui contiendra le nom du personnage. Choisis par le joueur
+    //Create the variable name wich contains the character's name. Choosen by the player
     var name : String
     
-    //Creation de la varianle healthpoint qui correspond au point de vie. Je l'ai initialise par defaut a 100
+    //Create the variable healthPoint. Initialised by default at 40
     var healthPoint : Int = 40
     
-    //Creation de la variable weapon qui contient l'arme choisis par le joueur
+    //Create the variable weapon. This variable contains the weapon choosen by the player
     var weapon : Weapon
     
-    //Fonction init qui permet de creer notre joueur avec un nom et une arme
+    //Init function. Creates a player based on the name and a weapon
     init(name : String, weapon : Weapon) {
         self.name = name
         self.weapon = weapon
     }
     
-    //Fonction attaque qui prend en parametre le joueur attaque
+    //Function attack with the attacked player as argument
     func attack(player : Character){
         player.healthPoint = player.healthPoint - self.weapon.dammage
     }
     
-    //Fonction qui permet de changer d'arme si un coffre apparait
+    //Function that allows a player to switch his  weapon
     func changeWeapon(newWeapon : Weapon){
         self.weapon = newWeapon
     }
  
-    //Fonction de soin qui apparait de maniere aleatoire
+    //Heal function with the targeted player as argument
     func heal(player : Character){
         self.healthPoint += 20
     }
