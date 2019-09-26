@@ -8,3 +8,9 @@
 
 import Foundation
 
+class Game {
+    
+    var players : [Player] = []
+    
+    
+}
