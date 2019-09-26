@@ -10,7 +10,7 @@ import Foundation
 
 class InputManager {
     
-    static func inputInt() -> Int {
+    func inputInt() -> Int {
         let readData = readLine()
         
         if let dataInt = readData {
@@ -19,7 +19,7 @@ class InputManager {
         return 0
     }
     
-    static func inputStr() -> String {
+    func inputStr() -> String {
         let readData = readLine()
         if let data = readData {
             return data

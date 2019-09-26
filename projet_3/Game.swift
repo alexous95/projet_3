@@ -12,5 +12,8 @@ class Game {
     
     var players : [Player] = []
     
+    var nameArray : [String] = []
+    
+    var inputManager = InputManager()
     
 }
