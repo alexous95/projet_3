@@ -81,7 +81,7 @@ class Player {
     }
     
     // This functions return wether a character can play or not 
-    func characterCanPlay(teamArray : [Character]) -> Bool {
+    func characterCanPlay(teamArray : [Character]) -> Character? {
     
         var playerChoice : Int = inputManager.inputInt()
         
@@ -102,7 +102,7 @@ class Player {
                     print("")
                     
                 }while playerChoice != 1
-                return true
+                return self.team[playerChoice - 1]
             }
             
         // Case where we have 2 characters
@@ -119,7 +119,7 @@ class Player {
                     playerChoice = inputManager.inputInt()
                     print("")
                 }while (choiceP1 != 1) && (choiceP1 != 2)
-                return true
+                return self.team[playerChoice - 1]
             }
             
         // Case where all the characters are alive
@@ -137,17 +137,28 @@ class Player {
                     playerChoice = inputInt()
                     print("")
                 }while (playerChoice != 1) && (playerChoice != 2) && (playerChoice != 3)
-                return true
+                return self.team[playerChoice - 1]
             }
         default:
-            return false
+            fatalError()
         }
-        return true
+        return nil
     }
         
     // This function is used to remove characters at a given index
     func removeCharacter(index : Int){
         self.team.remove(at: index)
+    }
+    
+    func indexCharacter(chara : Character) -> Int? {
+        var i = 0
+        for charater in team {
+            if charater.name == chara.name {
+                return i
+            }
+            i += 1
+        }
+        return nil
     }
     
     // A function that displays the name of a character with a number 

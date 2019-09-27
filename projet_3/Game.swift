@@ -20,6 +20,7 @@ class Game {
     
     private func askNumberOfPlayer(){
         print("How many players will play ?")
+        print("Choose a number between 1 and 4")
         self.numberOfPlayers = inputManager.inputInt()
         print("")
     }
@@ -70,30 +71,65 @@ class Game {
                 
                 playerAction = inputManager.inputInt()
                 switch playerAction {
+                    
+                // Case where the player attacks another player
                 case 1:
                     print("Choose a character to attack")
                     player.printName()
-                    
-                    if player.characterCanPlay(teamArray: player.team) {
+                    //Get the player from the team who is going to attack
+                    if let choosenPlayer = player.characterCanPlay(teamArray: player.team) {
                         print("On est dans la boucle pour attaquer")
                         
-                        var attackedPlayer : Int = 0
+                        var attackedPlayer : Int = -1
                         
                         repeat{
                             print("Choose the ennemy team you want to fight")
                             self.printPlayers(exception: player)
                             
                             attackedPlayer = inputManager.inputInt()
-                        }while(attackedPlayer !in [0...numberOfPlayers])
+                            print("")
+                        } while ((attackedPlayer != player.playerID) && (attackedPlayer != 1 && attackedPlayer != 2 && attackedPlayer != 3 && attackedPlayer != 4))
+                        
+                        print("Choose a character from the enemy team you want to attack")
+                        players[attackedPlayer - 1].printName()
+                        // We check if the character can be attacked
+                        if let choosenAttackedCharacter = player.characterCanPlay(teamArray: players[attackedPlayer - 1].team) {
+                            // We get the index of the character who is going to be attacked
+                            if let indexAttacked = player.indexCharacter(chara: choosenPlayer){
+                                player.team[indexAttacked].attack(player: choosenAttackedCharacter)
+                                if players[attackedPlayer - 1].team[indexAttacked].healthPoint < 0 {
+                                    players[attackedPlayer - 1].removeCharacter(index: indexAttacked)
+                                    if players[attackedPlayer - 1].team.count == 0 {
+                                        players.remove(at: attackedPlayer - 1)
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }// Fin du if pour verifier si un joueur peut attaquer et s'il a choisi une equipe valable
+                
+                case 2:
+                    print("Choose a character to heal")
+                    player.printName()
+                    //Get the player from the attacking who is going to attack
+                    if let healerPlayer = player.characterCanPlay(teamArray: player.team) {
+                        print("On est dans la boucle pour soigner")
+                        if let indexHealer = player.indexCharacter(chara: healerPlayer){
+                            
+                            print("Choose a character from your team")
+                            player.printName()
+                            // We check if the character can be healed
+                            if let choosenHealedCharacter = player.characterCanPlay(teamArray: player.team) {
+                                // We get the index of the character who is going to be healed
+                                player.team[indexHealer].heal(player: choosenHealedCharacter)
+                            }
+                        }
+                    }// Fin du if pour verifier si un joueur peut attaquer et s'il a choisi une equipe valable
                     
-                    }
                     
                 default:
                     fatalError()
                 } // Fin du switch de player Action
-                
-                
-                
                 
             } //Fin boucle for principale
             
@@ -105,6 +141,7 @@ class Game {
         self.askNumberOfPlayer()
         self.initializePlayers()
         self.initializeCharacters()
+        self.mainLoop()
     }
     
     
