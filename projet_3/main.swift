@@ -10,9 +10,6 @@ import Foundation
 
 // MARK: - VARIABLES
 
-// Ce sont les variables qui vont representer nos joueurs pendant la partie
-var player1 = Player()
-var player2 = Player()
 
 //Represente le nombre de tour dans notre jeu
 var numberOfRound = 0

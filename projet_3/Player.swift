@@ -82,9 +82,7 @@ class Player {
     
     // This functions return wether a character can play or not 
     func characterCanPlay(teamArray : [Character]) -> Bool {
-        print("Choose a character to attack")
-        self.printName()
-        
+    
         var playerChoice : Int = inputManager.inputInt()
         
         switch teamArray.count{
@@ -95,7 +93,7 @@ class Player {
             if playerChoice != 1 {
                 repeat{
                     print("Bad choice")
-                    print("Choose a valid number for the character who is going to attack\n")
+                    print("Choose a valid number for the character\n")
                     
                     self.printName()
                     print("")
@@ -113,7 +111,7 @@ class Player {
             if (playerChoice != 1) && (playerChoice != 2){
                 repeat{
                     print("Bad choice")
-                    print("Choose a valid number for the character who is going to attack\n")
+                    print("Choose a valid number for the character\n")
                     
                     self.printName()
                     print("")
@@ -131,7 +129,7 @@ class Player {
             if (playerChoice != 1) && (playerChoice != 2) && (playerChoice != 3){
                 repeat{
                     print("Bad choice")
-                    print("Choose a valid number for the character who is going to attack\n")
+                    print("Choose a valid number for the character\n")
                     
                     self.printName()
                     print("")
