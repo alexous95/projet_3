@@ -82,13 +82,15 @@ class Player {
     
     // This functions return wether a character can play or not 
     func characterCanPlay(teamArray : [Character]) -> Character? {
-    
+        print("On est arrivé la")
         var playerChoice : Int = inputManager.inputInt()
         
+        print(playerChoice)
         switch teamArray.count{
             
         // Case where we only have 1 character
         case 1:
+            print("On est la dans le cas 1")
             print("")
             if playerChoice != 1 {
                 repeat{
@@ -118,7 +120,7 @@ class Player {
                     
                     playerChoice = inputManager.inputInt()
                     print("")
-                }while (choiceP1 != 1) && (choiceP1 != 2)
+                }while (playerChoice != 1) && (playerChoice != 2)
                 return self.team[playerChoice - 1]
             }
             
@@ -134,7 +136,7 @@ class Player {
                     self.printName()
                     print("")
                     
-                    playerChoice = inputInt()
+                    playerChoice = inputManager.inputInt()
                     print("")
                 }while (playerChoice != 1) && (playerChoice != 2) && (playerChoice != 3)
                 return self.team[playerChoice - 1]

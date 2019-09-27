@@ -76,8 +76,11 @@ class Game {
                 case 1:
                     print("Choose a character to attack")
                     player.printName()
+                    print("")
                     //Get the player from the team who is going to attack
-                    if let choosenPlayer = player.characterCanPlay(teamArray: player.team) {
+                    let choosenPlayer = player.characterCanPlay(teamArray: player.team)
+                    print("\(choosenPlayer!)")
+                    if choosenPlayer != nil {
                         print("On est dans la boucle pour attaquer")
                         
                         var attackedPlayer : Int = -1
@@ -95,7 +98,7 @@ class Game {
                         // We check if the character can be attacked
                         if let choosenAttackedCharacter = player.characterCanPlay(teamArray: players[attackedPlayer - 1].team) {
                             // We get the index of the character who is going to be attacked
-                            if let indexAttacked = player.indexCharacter(chara: choosenPlayer){
+                            if let indexAttacked = player.indexCharacter(chara: choosenPlayer!){
                                 player.team[indexAttacked].attack(player: choosenAttackedCharacter)
                                 if players[attackedPlayer - 1].team[indexAttacked].healthPoint < 0 {
                                     players[attackedPlayer - 1].removeCharacter(index: indexAttacked)
@@ -107,6 +110,7 @@ class Game {
                         }
                         
                     }// Fin du if pour verifier si un joueur peut attaquer et s'il a choisi une equipe valable
+                    numberOfRounds += 1
                 
                 case 2:
                     print("Choose a character to heal")
@@ -125,6 +129,7 @@ class Game {
                             }
                         }
                     }// Fin du if pour verifier si un joueur peut attaquer et s'il a choisi une equipe valable
+                    numberOfRounds += 1
                     
                     
                 default:
@@ -137,11 +142,19 @@ class Game {
         
     } // Fin de la fonction
     
+    private func resumeGame(){
+        print("Number of rounds : \(self.numberOfRounds)")
+        print("The winner is")
+        for player in players {
+            print("Player \(player.playerID)")
+        }
+    }
     public func start(){
         self.askNumberOfPlayer()
         self.initializePlayers()
         self.initializeCharacters()
         self.mainLoop()
+        self.resumeGame()
     }
     
     
