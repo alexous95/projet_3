@@ -82,15 +82,14 @@ class Player {
     
     // This functions return wether a character can play or not 
     func characterCanPlay(teamArray : [Character]) -> Character? {
-        print("On est arrivé la")
-        var playerChoice : Int = inputManager.inputInt()
         
-        print(playerChoice)
+        var playerChoice : Int = -1
+        
         switch teamArray.count{
             
         // Case where we only have 1 character
         case 1:
-            print("On est la dans le cas 1")
+            playerChoice = inputManager.inputInt()
             print("")
             if playerChoice != 1 {
                 repeat{
@@ -104,11 +103,13 @@ class Player {
                     print("")
                     
                 }while playerChoice != 1
-                return self.team[playerChoice - 1]
             }
+            return self.team[playerChoice - 1]
             
         // Case where we have 2 characters
         case 2:
+            print("")
+            playerChoice = inputManager.inputInt()
             print("")
             if (playerChoice != 1) && (playerChoice != 2){
                 repeat{
@@ -121,13 +122,13 @@ class Player {
                     playerChoice = inputManager.inputInt()
                     print("")
                 }while (playerChoice != 1) && (playerChoice != 2)
-                return self.team[playerChoice - 1]
             }
+            return self.team[playerChoice - 1]
             
         // Case where all the characters are alive
         case 3:
+            playerChoice = inputManager.inputInt()
             print("")
-            
             if (playerChoice != 1) && (playerChoice != 2) && (playerChoice != 3){
                 repeat{
                     print("Bad choice")
@@ -139,14 +140,15 @@ class Player {
                     playerChoice = inputManager.inputInt()
                     print("")
                 }while (playerChoice != 1) && (playerChoice != 2) && (playerChoice != 3)
-                return self.team[playerChoice - 1]
             }
+            print("\(self.team[playerChoice - 1].name)")
+            return self.team[playerChoice - 1]
         default:
             fatalError()
         }
         return nil
     }
-        
+    
     // This function is used to remove characters at a given index
     func removeCharacter(index : Int){
         self.team.remove(at: index)
