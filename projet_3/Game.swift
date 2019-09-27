@@ -10,10 +10,26 @@ import Foundation
 
 class Game {
     
-    var players : [Player] = []
+    private var inputManager = InputManager()
     
-    var nameArray : [String] = []
+    private var players   : [Player] = []
+    public var nameArray  : [String] = []
     
-    var inputManager = InputManager()
+    private var numberOfPlayers : Int = 0
+    
+    private func askNumberOfPlayer(){
+        print("How many players will play ?")
+        self.numberOfPlayers = inputManager.inputInt()
+        print("")
+    }
+    
+    private func initializePlayers(){
+        for i in 1...numberOfPlayers{
+            let player = Player(playerID: i)
+            players.append(player)
+        }
+    }
+    
+    
     
 }
