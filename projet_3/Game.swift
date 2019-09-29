@@ -53,10 +53,13 @@ class Game {
     
     private func mainLoop(){
         // While there is more than one player with caracters alive we continue our loop
-        while(players.count > 1){
+        while(true){
             
             // For each players we must show the same menu
             for player in players{
+                if players.count == 1 {
+                    break
+                }
                 var playerAction : Int = 0
                 
                 print("----------------------Player \(player.playerID) turn's----------------------\n")
@@ -79,6 +82,7 @@ class Game {
                     print("")
                     //Get the player from the team who is going to attack
                     let choosenPlayer = player.characterCanPlay(teamArray: player.team)
+                    let indexChoosenAttacker = player.indexCharacter(chara: choosenPlayer!)
                     print("\(choosenPlayer!)")
                     if choosenPlayer != nil {
                         print("On est dans la boucle pour attaquer")
@@ -96,15 +100,20 @@ class Game {
                         print("Choose a character from the enemy team you want to attack")
                         players[attackedPlayer - 1].printName()
                         // We check if the character can be attacked
-                        if let choosenAttackedCharacter = player.characterCanPlay(teamArray: players[attackedPlayer - 1].team) {
+                        if let choosenAttackedCharacter = players[attackedPlayer - 1].characterCanPlay(teamArray: players[attackedPlayer - 1].team) {
                             // We get the index of the character who is going to be attacked
-                            if let indexAttacked = player.indexCharacter(chara: choosenPlayer!){
-                                player.team[indexAttacked].attack(player: choosenAttackedCharacter)
-                                if players[attackedPlayer - 1].team[indexAttacked].healthPoint < 0 {
+                            print("On est la pour attaquer")
+                            if let indexAttacked = players[attackedPlayer - 1].indexCharacter(chara: choosenAttackedCharacter){
+                                player.team[indexChoosenAttacker!].attack(player: choosenAttackedCharacter)
+                                print("\(players[attackedPlayer - 1].team[indexAttacked].healthPoint)")
+                                print("\(players[attackedPlayer - 1].team[indexAttacked].name)")
+                                if players[attackedPlayer - 1].team[indexAttacked].healthPoint <= 0 {
+                                    print("On est la dans la boucle qui supprime un personnage")
                                     players[attackedPlayer - 1].removeCharacter(index: indexAttacked)
-                                    if players[attackedPlayer - 1].team.count == 0 {
-                                        players.remove(at: attackedPlayer - 1)
-                                    }
+                                }
+                                if players[attackedPlayer - 1].team.count == 0 {
+                                    print("On est dans la boucle qui supprime un joueur")
+                                    players.remove(at: attackedPlayer - 1)
                                 }
                             }
                         }
@@ -141,6 +150,7 @@ class Game {
         } //Fin boucle while principale
         
     } // Fin de la fonction
+    
     
     private func resumeGame(){
         print("Number of rounds : \(self.numberOfRounds)")
