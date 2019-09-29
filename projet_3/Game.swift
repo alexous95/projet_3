@@ -104,9 +104,11 @@ class Game {
                             if let indexAttacked = players[attackedPlayer - 1].indexCharacter(chara: choosenAttackedCharacter){
                                 player.team[indexChoosenAttacker!].attack(player: choosenAttackedCharacter)
                                 
+                                //If a character's life is less or equal to 0 we remove him
                                 if players[attackedPlayer - 1].team[indexAttacked].healthPoint <= 0 {
                                     players[attackedPlayer - 1].removeCharacter(index: indexAttacked)
                                 }
+                                //If the number of character from a player's team is equal to 0 we remove him
                                 if players[attackedPlayer - 1].team.count == 0 {
                                     players.remove(at: attackedPlayer - 1)
                                 }
