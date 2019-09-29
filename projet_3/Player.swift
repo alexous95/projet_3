@@ -141,12 +141,10 @@ class Player {
                     print("")
                 }while (playerChoice != 1) && (playerChoice != 2) && (playerChoice != 3)
             }
-            print("\(self.team[playerChoice - 1].name)")
             return self.team[playerChoice - 1]
         default:
             fatalError()
         }
-        return nil
     }
     
     // This function is used to remove characters at a given index
