@@ -14,6 +14,7 @@ public class Sword : Weapon {
         super.init(dammage: 40)
     }
     
+    //Init function used for the randomly created weapons
     init(newDammage : Int){
         super.init(dammage: newDammage)
     }

@@ -9,7 +9,6 @@
 import Foundation
 
 public class Weapon {
-    // MARK: - VARIABLES
     
     //Variable which hold the dammage of the weapon
     var dammage : Int
