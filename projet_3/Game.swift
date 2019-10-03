@@ -10,6 +10,8 @@ import Foundation
 
 public class Game {
     
+    // MARK: - VARIABLES
+    
     private var inputManager = InputManager()
     
     private var players   : [Player] = []
@@ -17,6 +19,8 @@ public class Game {
     
     private var numberOfPlayers : Int = 0
     private var numberOfRounds  : Int = 0
+    
+    //MARK: - PRIVATE FUNCTIONS
     
     private func askNumberOfPlayer(){
         repeat{
@@ -53,6 +57,7 @@ public class Game {
         }
     }
     
+    // MARK: - MAINLOOP
     private func mainLoop(){
         // While there is more than one player with caracters alive we continue our loop
         var loop : Bool = true
@@ -183,7 +188,6 @@ public class Game {
         
     } // Fin de la fonction
     
-    
     private func resumeGame(){
         print("Number of rounds : \(self.numberOfRounds)")
         print("The winner is")
@@ -191,6 +195,7 @@ public class Game {
             print("Player \(player.playerID)")
         }
     }
+    
     public func start(){
         self.askNumberOfPlayer()
         self.initializePlayers()
