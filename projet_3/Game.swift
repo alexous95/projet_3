@@ -15,16 +15,17 @@ class Game {
     private var players   : [Player] = []
     public var nameArray  : [String] = []
     
-    private var numberOfPlayers : Int = 0
+    private var numberOfPlayers    : Int
+    private var numberOfCharacters : Int
+    
     private var numberOfRounds  : Int = 0
     
-    private func askNumberOfPlayer(){
-        print("How many players will play ?")
-        print("Choose a number between 1 and 4")
-        self.numberOfPlayers = inputManager.inputInt()
-        print("")
+    init(numberOfPlayers : Int, numberOfCharacters : Int){
+        self.numberOfPlayers = numberOfPlayers
+        self.numberOfCharacters = numberOfCharacters
     }
     
+   
     private func printPlayers(exception : Player){
         for player in players {
             if player.playerID != exception.playerID {
@@ -39,9 +40,9 @@ class Game {
         }
     }
     
-    private func initializeCharacters(){
+    private func initializeCharacters(maxCharacters : Int){
         for player in players {
-            player.addCharacter(nameArray: &self.nameArray)
+            player.addCharacter(nameArray: &self.nameArray, maxCharacters : maxCharacters)
         }
     }
     
@@ -160,9 +161,8 @@ class Game {
         }
     }
     public func start(){
-        self.askNumberOfPlayer()
         self.initializePlayers()
-        self.initializeCharacters()
+        self.initializeCharacters(maxCharacters: numberOfCharacters)
         self.mainLoop()
         self.resumeGame()
     }

@@ -33,38 +33,32 @@ class Player {
     }
     
     // This functions is used to create a caracter and add it to the team array
-    func addCharacter( nameArray : inout [String]){
+    func addCharacter( nameArray : inout [String], maxCharacters : Int){
         var name : String = ""
         var weapon : Int = -1
         var numberOfCharacters : Int = 0
         
         repeat{
-            print("Player \(self.playerID) choose a name for your character number \(numberOfCharacters+1) :\n")
-            name = inputManager.inputStr()
-            print("")
-            
-            if nameArray.contains(name){
-                repeat {
-                    print("This name has already been choosen")
-                    print("Enter a new name")
-                    name = inputManager.inputStr()
-                    print("")
-                    
-                }while(nameArray.contains(name))
-            }
+            print("On affiche le tableau de string pour verification")
+            print(nameArray)
+            name = inputManager.askStr(descriptionParameters: ["Player \(self.playerID) choose a name for your character number \(numberOfCharacters+1) :"], choiceParametres: nil, wrongDescription: ["This name has already been choosen", "Enter a new name"], stringArray: &nameArray)
+            /*print("Player \(self.playerID) choose a name for your character number \(numberOfCharacters+1) :\n")
+             name = inputManager.inputStr()
+             print("")
+             
+             if nameArray.contains(name){
+             repeat {
+             print("This name has already been choosen")
+             print("Enter a new name")
+             name = inputManager.inputStr()
+             print("")
+             
+             }while(nameArray.contains(name))
+             }*/
             nameArray.append(name)
+            weapon = inputManager.askInt(descriptionParameters: ["Choose the weapon you want"], choiceParametres: ["Sword", "Gun"], wrongDescription: ["Error, you chose a wrong number", "Enter a valid number"], valueAccepted: [1, 2])
             
-            print("Joueur \(self.playerID) choose a weapon for your personnage number \(numberOfCharacters+1) :")
-            repeat{
-                print("Choose a weapon corresponding to the desired weapon :")
-                print("1 : Sword")
-                print("2 : Gun")
-                print("")
-                weapon = inputManager.inputInt()
-                print("")
-            }while weapon != 1 && weapon != 2
-            
-            
+        
             switch weapon {
             case 1:
                 self.team.append(Character(name: name, weapon: Sword()))
@@ -77,7 +71,7 @@ class Player {
             }
             numberOfCharacters += 1
             
-        }while(numberOfCharacters < 3)
+        }while(numberOfCharacters < maxCharacters)
     }
     
     // This functions return wether a character can play or not 
