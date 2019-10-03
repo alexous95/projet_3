@@ -8,17 +8,17 @@
 
 import Foundation
 
-class Player {
+public class Player {
     
     // This variable is used to create mutiple players
     // This variable is used to avoid the hardcoded version of the main loop
-    var playerID : Int
+    internal var playerID : Int
     
     // This variable is used to manage the input from the users
     var inputManager = InputManager()
     
     //Create an array wich contains the 3 characters of each player
-    var team : [Character] = []
+    internal var team : [Character] = []
     
     // Initialize an instance of player with a number as argument
     init(playerID : Int) {
@@ -26,14 +26,14 @@ class Player {
     }
     
     //This function prints the name and the remaining healthpoint of the team
-    func detailTeam(){
+     public func detailTeam(){
         for chara in team {
             print("Character's name : \(chara.name)\t HealthPoint : \(chara.healthPoint)")
         }
     }
     
     // This functions is used to create a caracter and add it to the team array
-    func addCharacter( nameArray : inout [String]){
+    internal func addCharacter( nameArray : inout [String]){
         var name : String = ""
         var weapon : Int = -1
         var numberOfCharacters : Int = 0
@@ -81,7 +81,7 @@ class Player {
     }
     
     // This functions return wether a character can play or not 
-    func characterCanPlay(teamArray : [Character]) -> Character? {
+    internal func characterCanPlay(teamArray : [Character]) -> Character? {
         
         var playerChoice : Int = -1
         
@@ -148,11 +148,11 @@ class Player {
     }
     
     // This function is used to remove characters at a given index
-    func removeCharacter(index : Int){
+    internal func removeCharacter(index : Int){
         self.team.remove(at: index)
     }
     
-    func indexCharacter(chara : Character) -> Int? {
+    internal func indexCharacter(chara : Character) -> Int? {
         var i = 0
         for charater in team {
             if charater.name == chara.name {
@@ -164,7 +164,7 @@ class Player {
     }
     
     // A function that displays the name of a character with a number 
-    func printName(){
+    public func printName(){
         var i = 1
         for chara in team {
             print("\(i): \(chara.name)")

@@ -8,21 +8,23 @@
 
 import Foundation
 
-class Game {
+public class Game {
     
     private var inputManager = InputManager()
     
     private var players   : [Player] = []
-    public var nameArray  : [String] = []
+    private var nameArray  : [String] = []
     
     private var numberOfPlayers : Int = 0
     private var numberOfRounds  : Int = 0
     
     private func askNumberOfPlayer(){
-        print("How many players will play ?")
-        print("Choose a number between 1 and 4")
-        self.numberOfPlayers = inputManager.inputInt()
-        print("")
+        repeat{
+            print("How many players will play ?")
+            print("Choose a number between 2 and 4")
+            self.numberOfPlayers = inputManager.inputInt()
+            print("")
+        }while (self.numberOfPlayers != 2 && self.numberOfPlayers != 3 && self.numberOfPlayers != 4)
     }
     
     private func printPlayers(exception : Player){
@@ -54,6 +56,9 @@ class Game {
     private func mainLoop(){
         // While there is more than one player with caracters alive we continue our loop
         var loop : Bool = true
+        var random : Int = -1
+        var newWeapon : Weapon?
+        
         while(loop){
             
             // For each players we must show the same menu
@@ -61,7 +66,11 @@ class Game {
                 if loop == false {
                     continue
                 }
+                
+                random = Int.random(in: 1...numberOfPlayers)
                 var playerAction : Int = 0
+                var pickAction   : Int = 0
+                let randomWeapon : Int = Int.random(in: 0...1)
                 
                 print("----------------------Player \(player.playerID) turn's----------------------\n")
                 print("RECAP OF THE TEAM")
@@ -86,6 +95,30 @@ class Game {
                     let indexChoosenAttacker = player.indexCharacter(chara: choosenPlayer!)
                     
                     if choosenPlayer != nil {
+                        
+                        //This loop is used to create chests randomly
+                        if random == player.playerID{
+                            if randomWeapon == 1{
+                                newWeapon = Sword(newDammage: Int.random(in: 20...60))
+                            }
+                            else{
+                                newWeapon = Gun(newDammage: Int.random(in: 20...60))
+                            }
+                            print("A chest with a new weapon has appear. Would you like to open it and switch weapon ?")
+                            repeat{
+                                print("1. Yes")
+                                print("2. No")
+                                pickAction = inputManager.inputInt()
+                                print("")
+                            }while( pickAction != 1 && pickAction != 2)
+                            
+                            if pickAction == 1{
+                                newWeapon!.description()
+                                print("")
+                                player.team[indexChoosenAttacker!].changeWeapon(newWeapon: newWeapon!)
+                            }
+                        }
+                        
                         var attackedPlayer : Int = -1
                         
                         repeat{
@@ -122,11 +155,10 @@ class Game {
                     }
                 
                 case 2:
-                    print("Choose a character to heal")
+                    print("Choose a healer")
                     player.printName()
                     //Get the player from the attacking who is going to attack
                     if let healerPlayer = player.characterCanPlay(teamArray: player.team) {
-                        print("On est dans la boucle pour soigner")
                         if let indexHealer = player.indexCharacter(chara: healerPlayer){
                             
                             print("Choose a character from your team")

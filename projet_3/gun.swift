@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Gun : Weapon {
+public class Gun : Weapon {
     
     init(){
         super.init(dammage: 7)
@@ -19,7 +19,6 @@ class Gun : Weapon {
     }
     
     override func description(){
-        super.description()
         print("I am a gun and i deal \(self.dammage) dammage")
     }
     

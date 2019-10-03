@@ -8,9 +8,9 @@
 
 import Foundation
 
-class InputManager {
+public class InputManager {
     
-    func inputInt() -> Int {
+    public func inputInt() -> Int {
         let readData = readLine()
         
         if let dataInt = readData {
@@ -19,7 +19,7 @@ class InputManager {
         return 0
     }
     
-    func inputStr() -> String {
+    public func inputStr() -> String {
         let readData = readLine()
         if let data = readData {
             return data

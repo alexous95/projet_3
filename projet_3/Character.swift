@@ -8,13 +8,13 @@
 
 import Foundation
 
-class Character {
+public class Character {
     
     //Create the variable name wich contains the character's name. Choosen by the player
-    var name : String
+    internal var name : String
     
     //Create the variable healthPoint. Initialised by default at 40
-    var healthPoint : Int = 40
+    internal var healthPoint : Int = 40
     
     //Create the variable weapon. This variable contains the weapon choosen by the player
     var weapon : Weapon
@@ -26,17 +26,17 @@ class Character {
     }
     
     //Function attack with the attacked player as argument
-    func attack(player : Character){
+    internal func attack(player : Character){
         player.healthPoint = player.healthPoint - self.weapon.dammage
     }
     
     //Function that allows a player to switch his  weapon
-    func changeWeapon(newWeapon : Weapon){
+    internal func changeWeapon(newWeapon : Weapon){
         self.weapon = newWeapon
     }
  
     //Heal function with the targeted player as argument
-    func heal(player : Character){
+    internal func heal(player : Character){
         self.healthPoint += 20
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Weapon {
+public class Weapon {
     // MARK: - VARIABLES
     
     //Variable which hold the dammage of the weapon
