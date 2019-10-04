@@ -35,115 +35,68 @@ class Player {
     // This functions is used to create a caracter and add it to the team array
     func addCharacter( nameArray : inout [String], maxCharacters : Int){
         var name : String = ""
-        var weapon : Int = -1
+        var weapon : WeaponType = .Sword
         var numberOfCharacters : Int = 0
         
-        repeat{
-            print("On affiche le tableau de string pour verification")
-            print(nameArray)
-            name = inputManager.askStr(descriptionParameters: ["Player \(self.playerID) choose a name for your character number \(numberOfCharacters+1) :"], choiceParametres: nil, wrongDescription: ["This name has already been choosen", "Enter a new name"], stringArray: &nameArray)
-            /*print("Player \(self.playerID) choose a name for your character number \(numberOfCharacters+1) :\n")
-             name = inputManager.inputStr()
-             print("")
-             
-             if nameArray.contains(name){
-             repeat {
-             print("This name has already been choosen")
-             print("Enter a new name")
-             name = inputManager.inputStr()
-             print("")
-             
-             }while(nameArray.contains(name))
-             }*/
-            nameArray.append(name)
-            weapon = inputManager.askInt(descriptionParameters: ["Choose the weapon you want"], choiceParametres: ["Sword", "Gun"], wrongDescription: ["Error, you chose a wrong number", "Enter a valid number"], valueAccepted: [1, 2])
-            
+        //The text i'm using to manage the inputs from the users
         
+        let wrongName = ["This name has already been choosen", "Enter a new name"]
+        
+        let descriptionWeapon = ["Choose the weapon you want"]
+        let choiceWeapon = ["Sword", "Gun"]
+        let wrongWeapon = ["Error, you chose a wrong number", "Enter a valid number"]
+        
+        repeat{
+            
+            let descriptionName = ["Player \(self.playerID)", "Choose a name for your character number \(numberOfCharacters + 1) :"]
+            name = inputManager.askStr(descriptionParameters: descriptionName, choiceParametres: nil, wrongDescription: wrongName , stringArray: &nameArray)
+            
+            nameArray.append(name)
+            
+            weapon = inputManager.askWeapon(descriptionParameters: descriptionWeapon , choiceParametres: choiceWeapon , wrongDescription: wrongWeapon, valueAccepted: [1, 2])
+            
             switch weapon {
-            case 1:
+            case .Sword:
                 self.team.append(Character(name: name, weapon: Sword()))
                 
-            case 2 :
+            case .Gun:
                 self.team.append(Character(name: name, weapon: Gun()))
-                
-            default:
-                fatalError()
             }
+            
             numberOfCharacters += 1
             
         }while(numberOfCharacters < maxCharacters)
     }
     
     // This functions return wether a character can play or not 
-    func characterCanPlay(teamArray : [Character]) -> Character? {
+    func characterCanPlay(teamArray : [Character]) -> Character {
+        
+        let description = ["Choose a character"]
+        let choiceName = self.returnCharactersName()
+        let wrongChoice = ["Bad choice", "Choose a valid number for the character"]
         
         var playerChoice : Int = -1
+        var acceptedValue : [Int] = []
         
-        switch teamArray.count{
-            
-        // Case where we only have 1 character
-        case 1:
-            playerChoice = inputManager.inputInt()
-            print("")
-            if playerChoice != 1 {
-                repeat{
-                    print("Bad choice")
-                    print("Choose a valid number for the character\n")
-                    
-                    self.printName()
-                    print("")
-                    
-                    playerChoice = inputManager.inputInt()
-                    print("")
-                    
-                }while playerChoice != 1
-            }
-            return self.team[playerChoice - 1]
-            
-        // Case where we have 2 characters
-        case 2:
-            print("")
-            playerChoice = inputManager.inputInt()
-            print("")
-            if (playerChoice != 1) && (playerChoice != 2){
-                repeat{
-                    print("Bad choice")
-                    print("Choose a valid number for the character\n")
-                    
-                    self.printName()
-                    print("")
-                    
-                    playerChoice = inputManager.inputInt()
-                    print("")
-                }while (playerChoice != 1) && (playerChoice != 2)
-            }
-            return self.team[playerChoice - 1]
-            
-        // Case where all the characters are alive
-        case 3:
-            playerChoice = inputManager.inputInt()
-            print("")
-            if (playerChoice != 1) && (playerChoice != 2) && (playerChoice != 3){
-                repeat{
-                    print("Bad choice")
-                    print("Choose a valid number for the character\n")
-                    
-                    self.printName()
-                    print("")
-                    
-                    playerChoice = inputManager.inputInt()
-                    print("")
-                }while (playerChoice != 1) && (playerChoice != 2) && (playerChoice != 3)
-            }
-            return self.team[playerChoice - 1]
-        default:
-            fatalError()
+        for i in 1...teamArray.count{
+            acceptedValue.append(i)
         }
+        
+        playerChoice = inputManager.askInt(descriptionParameters: description, choiceParametres: choiceName, wrongDescription: wrongChoice, valueAccepted: acceptedValue)
+        
+        return self.team[playerChoice-1]
+        
     }
     
     // This function is used to remove characters at a given index
-    func removeCharacter(index : Int){
-        self.team.remove(at: index)
+    func removeCharacter(character : Character){
+        var i = 0
+        for chara in team {
+            if chara.name == character.name {
+                self.team.remove(at: i)
+            }
+            i += 1
+        }
     }
     
     func indexCharacter(chara : Character) -> Int? {
@@ -158,10 +111,18 @@ class Player {
     }
     
     // A function that displays the name of a character with a number 
+    func returnCharactersName() -> [String]{
+        var resultArray : [String] = []
+        for chara in team {
+            resultArray.append("\(chara.name)")
+        }
+        return resultArray
+    }
+    
     func printName(){
         var i = 1
         for chara in team {
-            print("\(i): \(chara.name)")
+            print("\(i) : \(chara.name)")
             i += 1
         }
     }

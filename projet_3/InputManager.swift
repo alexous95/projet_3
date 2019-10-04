@@ -40,9 +40,10 @@ class InputManager {
                 print("\(i).\(parametres)")
             }
         }
+        
         resultString = inputStr()
         
-        while (checkStrValue(in: &stringArray, value: resultString) == false) {
+        while (checkStrValue(in: &stringArray, value: resultString) == true) {
             for wrong in wrongDescription {
                 print(wrong)
             }
@@ -92,5 +93,104 @@ class InputManager {
             
         }
         return result
+    }
+
+    func askWeapon(descriptionParameters : [String], choiceParametres : [String]?, wrongDescription : [String], valueAccepted : [Int]) -> WeaponType {
+        var result : Int = 0
+        var i = 0
+        var weaponType : WeaponType = .Sword
+        
+        for descrption in descriptionParameters{
+            print(descrption)
+        }
+        if let choiceParametres = choiceParametres{
+            for parametre in choiceParametres{
+                i += 1
+                print("\(i).\(parametre)")
+            }
+        }
+        result = inputInt()
+        print("")
+        
+        while(checkIntValue(in: valueAccepted, value: result) == false){
+            for description in wrongDescription {
+                print(description)
+            }
+            result = inputInt()
+            print("")
+            
+        }
+        switch result {
+        case 1:
+            weaponType = .Sword
+        case 2:
+            weaponType = .Gun
+        default:
+            break
+        }
+        return weaponType
+    }
+
+
+    func askAction(descriptionParameters : [String], choiceParametres : [String]?, wrongDescription : [String], valueAccepted : [Int]) -> PlayerActions  {
+        var result : Int = 0
+        var i = 0
+        var actionType : PlayerActions = .Attack
+        
+        for description in descriptionParameters{
+            print(description)
+        }
+        if let choiceParametres = choiceParametres{
+            for parametre in choiceParametres{
+                i += 1
+                print("\(i).\(parametre)")
+            }
+        }
+        result = inputInt()
+        print("")
+        
+        while(checkIntValue(in: valueAccepted, value: result) == false){
+            for description in wrongDescription {
+                print(description)
+            }
+            result = inputInt()
+            print("")
+            
+        }
+        switch result {
+        case 1:
+            actionType = .Attack
+        case 2:
+            actionType = .Heal
+        default:
+            break
+        }
+        return actionType
+    }
+    
+    func askPlayer(descriptionParameters : [String], choiceParametres : [String]?, wrongDescription : [String], valueAccepted : [Int], playersArray : [Player]) -> Player  {
+        var result : Int = 0
+        var i = 0
+        
+        for description in descriptionParameters{
+            print(description)
+        }
+        if let choiceParametres = choiceParametres{
+            for parametre in choiceParametres{
+                i += 1
+                print("\(i).\(parametre)")
+            }
+        }
+        result = inputInt()
+        print("")
+        
+        while(checkIntValue(in: valueAccepted, value: result) == false){
+            for description in wrongDescription {
+                print(description)
+            }
+            result = inputInt()
+            print("")
+        }
+        return playersArray[result - 1]
     }
 }

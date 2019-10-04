@@ -25,14 +25,27 @@ class Game {
         self.numberOfCharacters = numberOfCharacters
     }
     
-   
-    private func printPlayers(exception : Player){
+    
+    private func returnPlayersID(exception : Player) -> [String]{
+        var resultArray : [String] = []
         for player in players {
             if player.playerID != exception.playerID {
-                 print(player.playerID)
+                resultArray.append("\(player.playerID)")
             }
         }
+        return resultArray
     }
+    
+    private func acceptedPlayer(exception : Player) -> [Int]{
+        var resultArray : [Int] = []
+        for player in players {
+            if player.playerID != exception.playerID{
+                resultArray.append(player.playerID)
+            }
+        }
+        return resultArray
+    }
+    
     private func initializePlayers(){
         for i in 1...numberOfPlayers{
             let player = Player(playerID: i)
@@ -46,111 +59,98 @@ class Game {
         }
     }
     
-    private func removePlayer(playerID : Int){
-        if players[playerID].team.count == 0 {
-            players.remove(at: playerID)
+    private func removePlayer(player : Player){
+        var i = 0
+        for playerTmp in players{
+            if playerTmp.playerID == player.playerID{
+                players.remove(at: i)
+            }
+            i += 1
         }
     }
     
     private func mainLoop(){
-        // While there is more than one player with caracters alive we continue our loop
+        
         var loop : Bool = true
+        
+        //The text i'm using to manage the different choices for the action
+        let actionDescription = ["What do you want to do ?"]
+        let actionChoice = ["Attack", "Heal"]
+        let wrongAction = ["Wrong choice", "Choose a valid action"]
+        
+        
+        //While there is more than one player with caracters alive we continue our loop
         while(loop){
             
-            // For each players we must show the same menu
+            //For each players we must show the same menu
             for player in players{
                 if loop == false {
                     continue
                 }
-                var playerAction : Int = 0
+                
+                //The text i'm using to manage the choice of an attacked player
+                let charaChoiceDescription = ["Choose the ennemy player you want to fight"]
+                let charaChoice = returnPlayersID(exception: player)
+                let wrongChoice = ["Wrong choice", "Choose a valid player"]
+                let acceptedValue = self.acceptedPlayer(exception: player)
+                
+                var playerAction : PlayerActions = .Attack
                 
                 print("----------------------Player \(player.playerID) turn's----------------------\n")
                 print("RECAP OF THE TEAM")
                 player.detailTeam()
                 print("")
                 
-                print("What do you want to do ?")
-                print("1: Attack")
-                print("2: Heal")
-                print("")
+                playerAction = inputManager.askAction(descriptionParameters: actionDescription, choiceParametres: actionChoice, wrongDescription: wrongAction, valueAccepted: [1, 2])
                 
-                playerAction = inputManager.inputInt()
                 switch playerAction {
                     
-                // Case where the player attacks another player
-                case 1:
-                    print("Choose a character to attack")
-                    player.printName()
-                    print("")
-                    //Get the player from the team who is going to attack
-                    let choosenPlayer = player.characterCanPlay(teamArray: player.team)
-                    let indexChoosenAttacker = player.indexCharacter(chara: choosenPlayer!)
+                case .Attack:
                     
-                    if choosenPlayer != nil {
-                        var attackedPlayer : Int = -1
-                        
-                        repeat{
-                            print("Choose the ennemy team you want to fight")
-                            self.printPlayers(exception: player)
-                            
-                            attackedPlayer = inputManager.inputInt()
-                            print("")
-                        } while ((attackedPlayer != player.playerID) && (attackedPlayer != 1 && attackedPlayer != 2 && attackedPlayer != 3 && attackedPlayer != 4))
-                        
-                        print("Choose a character from the enemy team you want to attack")
-                        players[attackedPlayer - 1].printName()
-                        // We check if the character can be attacked
-                        if let choosenAttackedCharacter = players[attackedPlayer - 1].characterCanPlay(teamArray: players[attackedPlayer - 1].team) {
-                            // We get the index of the character who is going to be attacked
-                            if let indexAttacked = players[attackedPlayer - 1].indexCharacter(chara: choosenAttackedCharacter){
-                                player.team[indexChoosenAttacker!].attack(player: choosenAttackedCharacter)
-                                
-                                //If a character's life is less or equal to 0 we remove him
-                                if players[attackedPlayer - 1].team[indexAttacked].healthPoint <= 0 {
-                                    players[attackedPlayer - 1].removeCharacter(index: indexAttacked)
-                                }
-                                //If the number of character from a player's team is equal to 0 we remove him
-                                if players[attackedPlayer - 1].team.count == 0 {
-                                    players.remove(at: attackedPlayer - 1)
-                                }
-                            }
-                        }
-                        
-                    }// Fin du if pour verifier si un joueur peut attaquer et s'il a choisi une equipe valable
+                    //Get the character from the team who is going to attack
+                    let choosenCharacter = player.characterCanPlay(teamArray: player.team)
+                    
+                    var AttackedPlayer : Player?
+                    
+                    //We get the player who is going to be atacked
+                    AttackedPlayer = inputManager.askPlayer(descriptionParameters: charaChoiceDescription, choiceParametres: charaChoice, wrongDescription: wrongChoice, valueAccepted: acceptedValue, playersArray: self.players)
+                    
+                    // We check if the character can be attacked
+                    let AttackedCharacter = AttackedPlayer!.characterCanPlay(teamArray: AttackedPlayer!.team)
+                    
+                    // We get the index of the character who is going to be attacked
+                    choosenCharacter.attack(player: AttackedCharacter)
+                    
+                    //If a character's life is less or equal to 0 we remove him
+                    if AttackedCharacter.healthPoint <= 0 {
+                        AttackedPlayer!.removeCharacter(character: AttackedCharacter)
+                    }
+                    //If the number of character from a player's team is equal to 0 we remove him
+                    if AttackedPlayer!.team.count == 0 {
+                        removePlayer(player: AttackedPlayer!)
+                    }
+                    
                     numberOfRounds += 1
                     if players.count == 1 {
                         loop = false
                     }
-                
-                case 2:
-                    print("Choose a character to heal")
-                    player.printName()
-                    //Get the player from the attacking who is going to attack
-                    if let healerPlayer = player.characterCanPlay(teamArray: player.team) {
-                        print("On est dans la boucle pour soigner")
-                        if let indexHealer = player.indexCharacter(chara: healerPlayer){
-                            
-                            print("Choose a character from your team")
-                            player.printName()
-                            // We check if the character can be healed
-                            if let choosenHealedCharacter = player.characterCanPlay(teamArray: player.team) {
-                                // We get the index of the character who is going to be healed
-                                player.team[indexHealer].heal(player: choosenHealedCharacter)
-                            }
-                        }
-                    }// Fin du if pour verifier si un joueur peut attaquer et s'il a choisi une equipe valable
+                    
+                case .Heal:
+                    //Get the character who is going to heal
+                    let healerCharacter = player.characterCanPlay(teamArray: player.team)
+                    
+                    // We check if the character can be healed
+                    let HealedCharacter = player.characterCanPlay(teamArray: player.team)
+                    
+                    // We get the index of the character who is going to be healed
+                    healerCharacter.heal(player: HealedCharacter)
+                    
                     numberOfRounds += 1
                     
-                    
-                default:
-                    fatalError()
-                } // Fin du switch de player Action
-                
-            } //Fin boucle for principale
-            
-        } //Fin boucle while principale
-        
-    } // Fin de la fonction
+                }
+            }
+        }
+    }
     
     
     private func resumeGame(){
