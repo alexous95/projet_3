@@ -85,7 +85,6 @@ class Player {
         playerChoice = inputManager.askInt(descriptionParameters: description, choiceParametres: choiceName, wrongDescription: wrongChoice, valueAccepted: acceptedValue)
         
         return self.team[playerChoice-1]
-        
     }
     
     // This function is used to remove characters at a given index
@@ -97,17 +96,6 @@ class Player {
             }
             i += 1
         }
-    }
-    
-    func indexCharacter(chara : Character) -> Int? {
-        var i = 0
-        for charater in team {
-            if charater.name == chara.name {
-                return i
-            }
-            i += 1
-        }
-        return nil
     }
     
     // A function that displays the name of a character with a number 

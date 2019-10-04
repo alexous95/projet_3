@@ -78,11 +78,8 @@ class Game {
         let actionChoice = ["Attack", "Heal"]
         let wrongAction = ["Wrong choice", "Choose a valid action"]
         
-        
         //While there is more than one player with caracters alive we continue our loop
         while(loop){
-            
-            //For each players we must show the same menu
             for player in players{
                 if loop == false {
                     continue
@@ -106,7 +103,6 @@ class Game {
                 switch playerAction {
                     
                 case .Attack:
-                    
                     //Get the character from the team who is going to attack
                     let choosenCharacter = player.characterCanPlay(teamArray: player.team)
                     
@@ -131,6 +127,7 @@ class Game {
                     }
                     
                     numberOfRounds += 1
+                    
                     if players.count == 1 {
                         loop = false
                     }
@@ -151,7 +148,6 @@ class Game {
             }
         }
     }
-    
     
     private func resumeGame(){
         print("Number of rounds : \(self.numberOfRounds)")
