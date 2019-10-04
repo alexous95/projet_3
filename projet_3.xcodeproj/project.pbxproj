@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FA2009F5233CDA3D00A7CE16 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2009F4233CDA3D00A7CE16 /* Game.swift */; };
 		FA2009F7233CE3E000A7CE16 /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2009F6233CE3E000A7CE16 /* InputManager.swift */; };
+		FA28AF582347223600BDD1F6 /* Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28AF572347223600BDD1F6 /* Enumeration.swift */; };
 		FA5B92252338D44A00159AFF /* gun.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B92242338D44A00159AFF /* gun.swift */; };
 		FAD1C2912338C39D00456B59 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1C2902338C39D00456B59 /* main.swift */; };
 		FAD1C2982338C41600456B59 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1C2972338C41600456B59 /* Character.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		FA2009F4233CDA3D00A7CE16 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		FA2009F6233CE3E000A7CE16 /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
+		FA28AF572347223600BDD1F6 /* Enumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumeration.swift; sourceTree = "<group>"; };
 		FA5B92242338D44A00159AFF /* gun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gun.swift; sourceTree = "<group>"; };
 		FAD1C28D2338C39D00456B59 /* projet_3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = projet_3; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD1C2902338C39D00456B59 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				FA5B92242338D44A00159AFF /* gun.swift */,
 				FA2009F4233CDA3D00A7CE16 /* Game.swift */,
 				FA2009F6233CE3E000A7CE16 /* InputManager.swift */,
+				FA28AF572347223600BDD1F6 /* Enumeration.swift */,
 			);
 			path = projet_3;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			files = (
 				FA2009F7233CE3E000A7CE16 /* InputManager.swift in Sources */,
 				FA5B92252338D44A00159AFF /* gun.swift in Sources */,
+				FA28AF582347223600BDD1F6 /* Enumeration.swift in Sources */,
 				FAD1C29A2338C46600456B59 /* Weapon.swift in Sources */,
 				FA2009F5233CDA3D00A7CE16 /* Game.swift in Sources */,
 				FAD1C29C2338C8D300456B59 /* Sword.swift in Sources */,
