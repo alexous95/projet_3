@@ -38,17 +38,10 @@ public class Player {
         var weapon : WeaponType = .Sword
         var numberOfCharacters : Int = 0
         
-        //The text i'm using to manage the inputs from the users
-        
-        //let wrongName = ["This name has already been choosen", "Enter a new name"]
-        
-        //let descriptionWeapon = ["Choose the weapon you want"]
-        //let choiceWeapon = ["Sword", "Gun"]
-        //let wrongWeapon = ["Error, you chose a wrong number", "Enter a valid number"]
-        
         repeat{
             
             let descriptionName = ["Player \(self.playerID)", "Choose a name for your character number \(numberOfCharacters + 1) :"]
+            
             name = inputManager.askStr(descriptionParameters: descriptionName, choiceParametres: nil, wrongDescription: Text.wrongName , stringArray: &nameArray)
             
             nameArray.append(name)
@@ -71,9 +64,7 @@ public class Player {
     // This functions return wether a character can play or not 
     func characterCanPlay(teamArray : [Character]) -> Character {
         
-        //let descriptionCharacter = ["Choose a character"]
         let choiceName = self.returnCharactersName()
-        //let wrongCharacter = ["Bad choice", "Choose a valid number for the character"]
         
         var playerChoice : Int = -1
         var acceptedValue : [Int] = []
@@ -98,7 +89,7 @@ public class Player {
         }
     }
     
-    // A function that displays the name of a character with a number 
+    // A function that returns the name of all characters in a team
     func returnCharactersName() -> [String]{
         var resultArray : [String] = []
         for chara in team {

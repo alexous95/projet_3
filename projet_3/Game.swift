@@ -76,11 +76,6 @@ public class Game {
         
         var loop : Bool = true
         
-        //The text i'm using to manage the different choices for the action
-        //let actionDescription = ["What do you want to do ?"]
-        //let actionChoice = ["Attack", "Heal"]
-        //let wrongAction = ["Wrong choice", "Choose a valid action"]
-        
         //While there is more than one player with caracters alive we continue our loop
         while(loop){
             for player in players{
@@ -89,9 +84,7 @@ public class Game {
                 }
                 
                 //The text i'm using to manage the choice of an attacked player
-                //let playerChoiceDescription = ["Choose the ennemy player you want to fight"]
                 let playerChoice = returnPlayersID(exception: player)
-                //let wrongPlayer = ["Wrong choice", "Choose a valid player"]
                 let acceptedValue = self.acceptedPlayer(exception: player)
                 
                 var playerAction : PlayerActions = .Attack
@@ -117,14 +110,14 @@ public class Game {
                     // We check if the character can be attacked
                     let AttackedCharacter = AttackedPlayer!.characterCanPlay(teamArray: AttackedPlayer!.team)
                     
-                    // We get the index of the character who is going to be attacked
+                    // The two characters are fighting
                     choosenCharacter.attack(player: AttackedCharacter)
                     
-                    //If a character's life is less or equal to 0 we remove him
+                    // If a character's life is less or equal to 0 we remove him
                     if AttackedCharacter.healthPoint <= 0 {
                         AttackedPlayer!.removeCharacter(character: AttackedCharacter)
                     }
-                    //If the number of character from a player's team is equal to 0 we remove him
+                    // If the number of character from a player's team is equal to 0 we remove him
                     if AttackedPlayer!.team.count == 0 {
                         removePlayer(player: AttackedPlayer!)
                     }
@@ -142,7 +135,7 @@ public class Game {
                     // We check if the character can be healed
                     let HealedCharacter = player.characterCanPlay(teamArray: player.team)
                     
-                    // We get the index of the character who is going to be healed
+                    // We heal the choosen character
                     healerCharacter.heal(player: HealedCharacter)
                     
                     numberOfRounds += 1
