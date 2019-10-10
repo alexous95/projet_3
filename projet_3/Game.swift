@@ -28,6 +28,7 @@ public class Game {
     }
     
     
+    //This function return an array of String which contains the IDs of all player excepted the player who is currently playing
     private func returnPlayersID(exception : Player) -> [String]{
         var resultArray : [String] = []
         for player in players {
@@ -38,6 +39,7 @@ public class Game {
         return resultArray
     }
     
+    //This function is used to create an array of Int. This array is used as a list of accepted value for the user
     private func acceptedPlayer(exception : Player) -> [Int]{
         var resultArray : [Int] = []
         for player in players {
@@ -48,6 +50,7 @@ public class Game {
         return resultArray
     }
     
+    // This function initialize the players
     private func initializePlayers(){
         for i in 1...numberOfPlayers{
             let player = Player(playerID: i)
@@ -55,12 +58,14 @@ public class Game {
         }
     }
     
+    // This function is used to ask the user to choose name for his characters
     private func initializeCharacters(maxCharacters : Int){
         for player in players {
             player.addCharacter(nameArray: &self.nameArray, maxCharacters : maxCharacters)
         }
     }
     
+    // This function is used to remove a player
     private func removePlayer(player : Player){
         var i = 0
         for playerTmp in players{

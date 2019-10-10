@@ -78,7 +78,7 @@ public class Player {
         return self.team[playerChoice-1]
     }
     
-    // This function is used to remove characters at a given index
+    // This function is used to remove characters
     func removeCharacter(character : Character){
         var i = 0
         for chara in team {
