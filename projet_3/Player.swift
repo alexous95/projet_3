@@ -40,20 +40,20 @@ public class Player {
         
         //The text i'm using to manage the inputs from the users
         
-        let wrongName = ["This name has already been choosen", "Enter a new name"]
+        //let wrongName = ["This name has already been choosen", "Enter a new name"]
         
-        let descriptionWeapon = ["Choose the weapon you want"]
-        let choiceWeapon = ["Sword", "Gun"]
-        let wrongWeapon = ["Error, you chose a wrong number", "Enter a valid number"]
+        //let descriptionWeapon = ["Choose the weapon you want"]
+        //let choiceWeapon = ["Sword", "Gun"]
+        //let wrongWeapon = ["Error, you chose a wrong number", "Enter a valid number"]
         
         repeat{
             
             let descriptionName = ["Player \(self.playerID)", "Choose a name for your character number \(numberOfCharacters + 1) :"]
-            name = inputManager.askStr(descriptionParameters: descriptionName, choiceParametres: nil, wrongDescription: wrongName , stringArray: &nameArray)
+            name = inputManager.askStr(descriptionParameters: descriptionName, choiceParametres: nil, wrongDescription: Text.wrongName , stringArray: &nameArray)
             
             nameArray.append(name)
             
-            weapon = inputManager.askWeapon(descriptionParameters: descriptionWeapon , choiceParametres: choiceWeapon , wrongDescription: wrongWeapon, valueAccepted: [1, 2])
+            weapon = inputManager.askWeapon(descriptionParameters: Text.descriptionWeapon , choiceParametres: Text.choiceWeapon , wrongDescription: Text.wrongWeapon, valueAccepted: [1, 2])
             
             switch weapon {
             case .Sword:
@@ -71,9 +71,9 @@ public class Player {
     // This functions return wether a character can play or not 
     func characterCanPlay(teamArray : [Character]) -> Character {
         
-        let description = ["Choose a character"]
+        //let descriptionCharacter = ["Choose a character"]
         let choiceName = self.returnCharactersName()
-        let wrongChoice = ["Bad choice", "Choose a valid number for the character"]
+        //let wrongCharacter = ["Bad choice", "Choose a valid number for the character"]
         
         var playerChoice : Int = -1
         var acceptedValue : [Int] = []
@@ -82,7 +82,7 @@ public class Player {
             acceptedValue.append(i)
         }
         
-        playerChoice = inputManager.askInt(descriptionParameters: description, choiceParametres: choiceName, wrongDescription: wrongChoice, valueAccepted: acceptedValue)
+        playerChoice = inputManager.askInt(descriptionParameters: Text.descriptionCharacter, choiceParametres: choiceName, wrongDescription: Text.wrongCharacter, valueAccepted: acceptedValue)
         
         return self.team[playerChoice-1]
     }

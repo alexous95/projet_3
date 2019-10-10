@@ -77,9 +77,9 @@ public class Game {
         var loop : Bool = true
         
         //The text i'm using to manage the different choices for the action
-        let actionDescription = ["What do you want to do ?"]
-        let actionChoice = ["Attack", "Heal"]
-        let wrongAction = ["Wrong choice", "Choose a valid action"]
+        //let actionDescription = ["What do you want to do ?"]
+        //let actionChoice = ["Attack", "Heal"]
+        //let wrongAction = ["Wrong choice", "Choose a valid action"]
         
         //While there is more than one player with caracters alive we continue our loop
         while(loop){
@@ -89,9 +89,9 @@ public class Game {
                 }
                 
                 //The text i'm using to manage the choice of an attacked player
-                let charaChoiceDescription = ["Choose the ennemy player you want to fight"]
-                let charaChoice = returnPlayersID(exception: player)
-                let wrongChoice = ["Wrong choice", "Choose a valid player"]
+                //let playerChoiceDescription = ["Choose the ennemy player you want to fight"]
+                let playerChoice = returnPlayersID(exception: player)
+                //let wrongPlayer = ["Wrong choice", "Choose a valid player"]
                 let acceptedValue = self.acceptedPlayer(exception: player)
                 
                 var playerAction : PlayerActions = .Attack
@@ -101,7 +101,7 @@ public class Game {
                 player.detailTeam()
                 print("")
                 
-                playerAction = inputManager.askAction(descriptionParameters: actionDescription, choiceParametres: actionChoice, wrongDescription: wrongAction, valueAccepted: [1, 2])
+                playerAction = inputManager.askAction(descriptionParameters: Text.actionDescription, choiceParametres: Text.actionChoice, wrongDescription: Text.wrongAction, valueAccepted: [1, 2])
                 
                 switch playerAction {
                     
@@ -112,7 +112,7 @@ public class Game {
                     var AttackedPlayer : Player?
                     
                     //We get the player who is going to be atacked
-                    AttackedPlayer = inputManager.askPlayer(descriptionParameters: charaChoiceDescription, choiceParametres: charaChoice, wrongDescription: wrongChoice, valueAccepted: acceptedValue, playersArray: self.players)
+                    AttackedPlayer = inputManager.askPlayer(descriptionParameters: Text.playerChoiceDescription, choiceParametres: playerChoice, wrongDescription: Text.wrongPlayer, valueAccepted: acceptedValue, playersArray: self.players)
                     
                     // We check if the character can be attacked
                     let AttackedCharacter = AttackedPlayer!.characterCanPlay(teamArray: AttackedPlayer!.team)
