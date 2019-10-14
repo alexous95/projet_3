@@ -9,17 +9,17 @@
 import Foundation
 
 public class Weapon {
-    
-    //Variable which hold the dammage of the weapon
-    var dammage : Int
-    
-    //Init function wich initialize our weapon
-    init(dammage : Int){
-        self.dammage = dammage
-    }
-    
-    func description(){
-        print("I'm a weapon")
-    }
-    
+  
+  //Variable which hold the dammage of the weapon
+  var dammage : Int
+  
+  //Init function wich initialize our weapon
+  init(dammage : Int){
+    self.dammage = dammage
+  }
+  
+  func description(){
+    print("I'm a weapon")
+  }
+  
 }

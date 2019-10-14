@@ -9,19 +9,19 @@
 import Foundation
 
 public class Sword : Weapon {
-    
-    init(){
-        super.init(dammage: 40)
-    }
-    
-    //Init function used for the randomly created weapons
-    init(newDammage : Int){
-        super.init(dammage: newDammage)
-    }
-    
-    override func description(){
-        print("I am a sword and i deal \(self.dammage) dammage")
-    }
-    
-    
+  
+  init(){
+    super.init(dammage: 40)
+  }
+  
+  //Init function used for the randomly created weapons
+  init(newDammage : Int){
+    super.init(dammage: newDammage)
+  }
+  
+  override func description(){
+    print("I am a sword and i deal \(self.dammage) dammage")
+  }
+  
+  
 }
