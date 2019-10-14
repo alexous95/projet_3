@@ -140,7 +140,7 @@ public class InputManager {
 
 
     //This function is used when the user is asked to choose an action
-    func askAction(descriptionParameters : [String], choiceParametres : [String]?, wrongDescription : [String], valueAccepted : [Int]) -> PlayerActions  {
+    func askAction(descriptionParameters : [String], choiceParametres : [String]? = nil, wrongDescription : [String], valueAccepted : [Int]) -> PlayerActions  {
         var result : Int = 0
         var i = 0
         var actionType : PlayerActions = .Attack

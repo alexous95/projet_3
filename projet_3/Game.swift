@@ -27,7 +27,6 @@ public class Game {
         self.numberOfCharacters = numberOfCharacters
     }
     
-    
     //This function return an array of String which contains the IDs of all player excepted the player who is currently playing
     private func returnPlayersID(exception : Player) -> [String]{
         var resultArray : [String] = []
@@ -66,7 +65,7 @@ public class Game {
     }
     
     // This function is used to remove a player
-    private func removePlayer(player : Player){
+    private func remove(player : Player){
         var i = 0
         for playerTmp in players{
             if playerTmp.playerID == player.playerID{
@@ -107,24 +106,24 @@ public class Game {
                     //Get the character from the team who is going to attack
                     let choosenCharacter = player.characterCanPlay(teamArray: player.team)
                     
-                    var AttackedPlayer : Player?
+                    var AttackedPlayer : Player
                     
                     //We get the player who is going to be atacked
                     AttackedPlayer = inputManager.askPlayer(descriptionParameters: Text.playerChoiceDescription, choiceParametres: playerChoice, wrongDescription: Text.wrongPlayer, valueAccepted: acceptedValue, playersArray: self.players)
                     
                     // We check if the character can be attacked
-                    let AttackedCharacter = AttackedPlayer!.characterCanPlay(teamArray: AttackedPlayer!.team)
+                    let AttackedCharacter = AttackedPlayer.characterCanPlay(teamArray: AttackedPlayer.team)
                     
                     // The two characters are fighting
                     choosenCharacter.attack(player: AttackedCharacter)
                     
                     // If a character's life is less or equal to 0 we remove him
                     if AttackedCharacter.healthPoint <= 0 {
-                        AttackedPlayer!.removeCharacter(character: AttackedCharacter)
+                        AttackedPlayer.removeCharacter(character: AttackedCharacter)
                     }
                     // If the number of character from a player's team is equal to 0 we remove him
-                    if AttackedPlayer!.team.count == 0 {
-                        removePlayer(player: AttackedPlayer!)
+                    if AttackedPlayer.team.count == 0 {
+                        remove(player: AttackedPlayer)
                     }
                     
                     numberOfRounds += 1
@@ -164,7 +163,4 @@ public class Game {
         self.mainLoop()
         self.resumeGame()
     }
-    
-    
-    
 }
