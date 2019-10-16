@@ -54,5 +54,16 @@ class Text {
     return ["Wrong choice", "Choose a valid player"]
   }
   
+  static var changeDescription : [String] {
+    return ["Do you want to open it ?"]
+  }
+  
+  static var changeAction : [String] {
+    return ["Accept", "Decline"]
+  }
+  
+  static var wrongChange : [String] {
+    return ["Wrong choice", "Choose a valid action"]
+  }
   
 }

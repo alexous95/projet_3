@@ -77,7 +77,6 @@ public class Game {
   private func mainLoop(){
     
     var loop : Bool = true
-    
     //While there is more than one player with caracters alive we continue our loop
     while(loop){
       for player in players{
@@ -87,9 +86,10 @@ public class Game {
         
         //The text i'm using to manage the choice of an attacked player
         let playerChoice = returnPlayersID(exception: player)
-        let acceptedValue = self.acceptedPlayer(exception: player)
-        
+        let acceptedValue = acceptedPlayer(exception: player)
         var playerAction : PlayerActions = .Attack
+        let random = Int.random(in: 1...numberOfPlayers)
+        
         
         print("----------------------Player \(player.playerID) turn's----------------------\n")
         print("RECAP OF THE TEAM")
@@ -102,7 +102,11 @@ public class Game {
           
         case .Attack:
           //Get the character from the team who is going to attack
-          let choosenCharacter = player.characterCanPlay(teamArray: player.team)
+          let choosenCharacter = player.characterCanPlay()
+          
+          if random == player.playerID {
+            choosenCharacter.askChangeWeapon()
+          }
           
           var AttackedPlayer : Player
           
@@ -110,7 +114,7 @@ public class Game {
           AttackedPlayer = InputManager.shared.askPlayer(descriptionParameters: Text.playerChoiceDescription, choiceParametres: playerChoice, wrongDescription: Text.wrongPlayer, valueAccepted: acceptedValue, playersArray: self.players)
           
           // We check if the character can be attacked
-          let AttackedCharacter = AttackedPlayer.characterCanPlay(teamArray: AttackedPlayer.team)
+          let AttackedCharacter = AttackedPlayer.characterCanPlay()
           
           // The two characters are fighting
           choosenCharacter.attack(player: AttackedCharacter)
@@ -132,10 +136,10 @@ public class Game {
           
         case .Heal:
           //Get the character who is going to heal
-          let healerCharacter = player.characterCanPlay(teamArray: player.team)
+          let healerCharacter = player.characterCanPlay()
           
           // We check if the character can be healed
-          let HealedCharacter = player.characterCanPlay(teamArray: player.team)
+          let HealedCharacter = player.characterCanPlay()
           
           // We heal the choosen character
           healerCharacter.heal(player: HealedCharacter)
@@ -148,7 +152,7 @@ public class Game {
   }
   
   private func resumeGame(){
-    print("Number of rounds : \(self.numberOfRounds)")
+    print("Number of rounds : \(numberOfRounds)")
     print("The winner is")
     for player in players {
       print("Player \(player.playerID)")

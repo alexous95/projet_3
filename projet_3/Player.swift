@@ -38,7 +38,7 @@ public class Player {
     repeat{
       
       let descriptionName = ["Player \(playerID)", "Choose a name for your character number \(numberOfCharacters + 1) :"]
-      
+    
       name = InputManager.shared.askStr(descriptionParameters: descriptionName, choiceParametres: nil, wrongDescription: Text.wrongName , stringArray: &nameArray)
       
       nameArray.append(name)
@@ -55,18 +55,18 @@ public class Player {
       
       numberOfCharacters += 1
       
-    }while(numberOfCharacters < maxCharacters)
+    } while(numberOfCharacters < maxCharacters)
   }
   
   // This functions return wether a character can play or not
-  func characterCanPlay(teamArray : [Character]) -> Character {
+  func characterCanPlay() -> Character {
     
     let choiceName = returnCharactersName()
     
     var playerChoice : Int = -1
     var acceptedValue : [Int] = []
     
-    for i in 1...teamArray.count{
+    for i in 1...team.count{
       acceptedValue.append(i)
     }
     

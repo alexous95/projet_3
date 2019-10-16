@@ -31,8 +31,34 @@ public class Character {
   }
   
   //Function that allows a player to switch his  weapon
-  internal func changeWeapon(newWeapon : Weapon){
+  private func changeWeapon(newWeapon : Weapon){
     weapon = newWeapon
+  }
+  
+  private func createRandomWeapon() -> Weapon {
+    let randomWeapon = Int.random(in: 1...100)
+    
+    if randomWeapon % 2 == 0 {
+      let sword = Sword(newDammage: Int.random(in: 20...45))
+      return sword
+    }
+    else {
+      let gun = Gun(newDammage: Int.random(in: 20...45))
+      return gun
+    }
+    
+  }
+  
+  //This function is used to ask if the character would like to change his weapon with the one in the chest
+  internal func askChangeWeapon(){
+    let newWeapon = createRandomWeapon()
+    
+    print("A chest has appeared")
+    let pickAction = InputManager.shared.askInt(descriptionParameters: Text.changeDescription, choiceParametres: Text.changeAction, wrongDescription: Text.wrongChange, valueAccepted: [1, 2])
+    if pickAction == 1 {
+      changeWeapon(newWeapon: newWeapon)
+      newWeapon.description()
+    }
   }
   
   //Heal function with the targeted player as argument
