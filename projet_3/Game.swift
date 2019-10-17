@@ -12,21 +12,23 @@ public class Game {
   
   // MARK: - VARIABLES
   
-  private var players   : [Player] = []
-  private var nameArray  : [String] = []
+  private var players: [Player] = []
+  private var nameArray: [String] = []
   
-  private var numberOfPlayers    : Int
-  private var numberOfCharacters : Int
+  private var numberOfPlayers: Int
+  private var numberOfCharacters: Int
   
-  private var numberOfRounds  : Int = 0
+  private var numberOfRounds: Int = 0
   
-  init(numberOfPlayers : Int, numberOfCharacters : Int) {
+  init(numberOfPlayers: Int, numberOfCharacters: Int) {
     self.numberOfPlayers = numberOfPlayers
     self.numberOfCharacters = numberOfCharacters
   }
   
+  //MARK: - PRIVATE
+  
   //This function return an array of String which contains the IDs of all player excepted the player who is currently playing
-  private func returnPlayersID(exception : Player) -> [String] {
+  private func returnPlayersID(exception: Player) -> [String] {
     var resultArray : [String] = []
     for player in players {
       if player.playerID != exception.playerID {
@@ -55,7 +57,7 @@ public class Game {
     }
   }
   
-  // This function is used to ask the user to choose name for his characters
+  // This function is used to ask the user to choose a name for his characters
   private func initializeCharacters(maxCharacters : Int){
     for player in players {
       player.addCharacter(nameArray: &self.nameArray, maxCharacters : maxCharacters)
@@ -151,6 +153,7 @@ public class Game {
     }
   }
   
+  //This function is used when the game is finished
   private func resumeGame(){
     print("Number of rounds : \(numberOfRounds)")
     print("The winner is")
@@ -159,10 +162,12 @@ public class Game {
     }
   }
   
+  //MARK: - PUBLIC
+  
   public func start(){
-    self.initializePlayers()
-    self.initializeCharacters(maxCharacters: numberOfCharacters)
-    self.mainLoop()
-    self.resumeGame()
+    initializePlayers()
+    initializeCharacters(maxCharacters: numberOfCharacters)
+    mainLoop()
+    resumeGame()
   }
 }

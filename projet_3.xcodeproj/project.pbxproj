@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		FA2009F5233CDA3D00A7CE16 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2009F4233CDA3D00A7CE16 /* Game.swift */; };
 		FA2009F7233CE3E000A7CE16 /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2009F6233CE3E000A7CE16 /* InputManager.swift */; };
-		FA5B92252338D44A00159AFF /* gun.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B92242338D44A00159AFF /* gun.swift */; };
+		FA5B92252338D44A00159AFF /* Gun.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B92242338D44A00159AFF /* Gun.swift */; };
 		FA8099BE234F06A300D27F19 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8099BD234F06A300D27F19 /* Text.swift */; };
 		FAA967F723545B7500D2C3D6 /* WeaponType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA967F623545B7500D2C3D6 /* WeaponType.swift */; };
 		FAA967F923545BA100D2C3D6 /* PlayerActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA967F823545BA100D2C3D6 /* PlayerActions.swift */; };
@@ -35,7 +35,7 @@
 /* Begin PBXFileReference section */
 		FA2009F4233CDA3D00A7CE16 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		FA2009F6233CE3E000A7CE16 /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
-		FA5B92242338D44A00159AFF /* gun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gun.swift; sourceTree = "<group>"; };
+		FA5B92242338D44A00159AFF /* Gun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gun.swift; sourceTree = "<group>"; };
 		FA8099BD234F06A300D27F19 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		FAA967F623545B7500D2C3D6 /* WeaponType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponType.swift; sourceTree = "<group>"; };
 		FAA967F823545BA100D2C3D6 /* PlayerActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerActions.swift; sourceTree = "<group>"; };
@@ -77,17 +77,17 @@
 		FAD1C28F2338C39D00456B59 /* projet_3 */ = {
 			isa = PBXGroup;
 			children = (
-				FAD1C2902338C39D00456B59 /* main.swift */,
-				FAD1C2972338C41600456B59 /* Character.swift */,
 				FAD1C2992338C46600456B59 /* Weapon.swift */,
 				FAD1C29B2338C8D300456B59 /* Sword.swift */,
+				FA5B92242338D44A00159AFF /* Gun.swift */,
+				FAD1C2972338C41600456B59 /* Character.swift */,
 				FAD1C29D2338CC5600456B59 /* Player.swift */,
-				FA5B92242338D44A00159AFF /* gun.swift */,
-				FA2009F4233CDA3D00A7CE16 /* Game.swift */,
 				FA2009F6233CE3E000A7CE16 /* InputManager.swift */,
+				FA8099BD234F06A300D27F19 /* Text.swift */,
+				FA2009F4233CDA3D00A7CE16 /* Game.swift */,
 				FAA967F823545BA100D2C3D6 /* PlayerActions.swift */,
 				FAA967F623545B7500D2C3D6 /* WeaponType.swift */,
-				FA8099BD234F06A300D27F19 /* Text.swift */,
+				FAD1C2902338C39D00456B59 /* main.swift */,
 			);
 			path = projet_3;
 			sourceTree = "<group>";
@@ -152,7 +152,7 @@
 			files = (
 				FA2009F7233CE3E000A7CE16 /* InputManager.swift in Sources */,
 				FAA967F723545B7500D2C3D6 /* WeaponType.swift in Sources */,
-				FA5B92252338D44A00159AFF /* gun.swift in Sources */,
+				FA5B92252338D44A00159AFF /* Gun.swift in Sources */,
 				FAA967F923545BA100D2C3D6 /* PlayerActions.swift in Sources */,
 				FAD1C29A2338C46600456B59 /* Weapon.swift in Sources */,
 				FA2009F5233CDA3D00A7CE16 /* Game.swift in Sources */,

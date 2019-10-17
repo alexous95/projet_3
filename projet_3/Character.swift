@@ -11,10 +11,10 @@ import Foundation
 public class Character {
   
   //Create the variable name wich contains the character's name. Choosen by the player
-  internal var name : String
+  internal var name: String
   
   //Create the variable healthPoint. Initialised by default at 40
-  internal var healthPoint : Int = 40
+  internal var healthPoint: Int = 40
   
   //Create the variable weapon. This variable contains the weapon choosen by the player
   var weapon : Weapon
@@ -46,7 +46,6 @@ public class Character {
       let gun = Gun(newDammage: Int.random(in: 20...45))
       return gun
     }
-    
   }
   
   //This function is used to ask if the character would like to change his weapon with the one in the chest
