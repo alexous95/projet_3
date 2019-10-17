@@ -10,59 +10,59 @@ import Foundation
 
 class Text {
   
-  static var descriptionWeapon : [String] {
+  static var descriptionWeapon: [String] {
     return ["Choose the weapon you want"]
   }
   
-  static var choiceWeapon : [String] {
+  static var choiceWeapon: [String] {
     return ["Sword", "Gun"]
   }
   
-  static var wrongWeapon : [String] {
+  static var wrongWeapon: [String] {
     return ["Error, you chose a wrong number", "Enter a valid number"]
   }
   
-  static var wrongName : [String] {
+  static var wrongName: [String] {
     return ["This name has already been choosen", "Enter a new name"]
   }
   
-  static var descriptionCharacter : [String]{
+  static var descriptionCharacter: [String]{
     return ["Choose a character"]
   }
   
-  static var wrongCharacter : [String] {
+  static var wrongCharacter: [String] {
     return ["Bad choice", "Choose a valid number for the character"]
   }
   
-  static var actionDescription : [String] {
+  static var actionDescription: [String] {
     return ["What do you want to do ?"]
   }
   
-  static var actionChoice : [String] {
+  static var actionChoice: [String] {
     return ["Attack", "Heal"]
   }
   
-  static var wrongAction : [String] {
+  static var wrongAction: [String] {
     return ["Wrong choice", "Choose a valid action"]
   }
   
-  static var playerChoiceDescription : [String] {
+  static var playerChoiceDescription: [String] {
     return ["Choose the ennemy player you want to fight"]
   }
   
-  static var wrongPlayer : [String] {
+  static var wrongPlayer: [String] {
     return ["Wrong choice", "Choose a valid player"]
   }
   
-  static var changeDescription : [String] {
+  static var changeDescription: [String] {
     return ["Do you want to open it ?"]
   }
   
-  static var changeAction : [String] {
+  static var changeAction: [String] {
     return ["Accept", "Decline"]
   }
   
-  static var wrongChange : [String] {
+  static var wrongChange: [String] {
     return ["Wrong choice", "Choose a valid action"]
   }
   

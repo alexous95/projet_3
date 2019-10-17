@@ -9,6 +9,6 @@
 import Foundation
 
 enum PlayerActions {
-  case Attack
-  case Heal
+  case attack
+  case heal
 }

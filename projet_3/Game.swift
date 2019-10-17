@@ -25,11 +25,11 @@ public class Game {
     self.numberOfCharacters = numberOfCharacters
   }
   
-  //MARK: - PRIVATE
+  // MARK: - PRIVATE
   
-  //This function return an array of String which contains the IDs of all player excepted the player who is currently playing
+  /// This function return an array of String which contains the IDs of all player excepted the player who is currently playing
   private func returnPlayersID(exception: Player) -> [String] {
-    var resultArray : [String] = []
+    var resultArray: [String] = []
     for player in players {
       if player.playerID != exception.playerID {
         resultArray.append("\(player.playerID)")
@@ -38,9 +38,9 @@ public class Game {
     return resultArray
   }
   
-  //This function is used to create an array of Int. This array is used as a list of accepted value for the user
-  private func acceptedPlayer(exception : Player) -> [Int] {
-    var resultArray : [Int] = []
+  /// This function is used to create an array of Int. This array is used as a list of accepted value for the user
+  private func acceptedPlayer(exception: Player) -> [Int] {
+    var resultArray: [Int] = []
     for player in players {
       if player.playerID != exception.playerID {
         resultArray.append(player.playerID)
@@ -49,26 +49,26 @@ public class Game {
     return resultArray
   }
   
-  // This function initialize the players
-  private func initializePlayers(){
+  /// This function initialize the players
+  private func initializePlayers() {
     for i in 1...numberOfPlayers{
       let player = Player(playerID: i)
       players.append(player)
     }
   }
   
-  // This function is used to ask the user to choose a name for his characters
-  private func initializeCharacters(maxCharacters : Int){
+  /// This function is used to ask the user to choose a name for his characters
+  private func initializeCharacters(maxCharacters : Int) {
     for player in players {
-      player.addCharacter(nameArray: &self.nameArray, maxCharacters : maxCharacters)
+      player.addCharacter(nameArray: &self.nameArray, maxCharacters: maxCharacters)
     }
   }
   
-  // This function is used to remove a player
-  private func remove(player : Player){
+  /// This function is used to remove a player
+  private func remove(player: Player) {
     var i = 0
     for playerTmp in players{
-      if playerTmp.playerID == player.playerID{
+      if playerTmp.playerID == player.playerID {
         players.remove(at: i)
       }
       i += 1
@@ -76,20 +76,20 @@ public class Game {
   }
   
   // MARK: - MAINLOOP
-  private func mainLoop(){
+  private func mainLoop() {
     
-    var loop : Bool = true
-    //While there is more than one player with caracters alive we continue our loop
-    while(loop){
-      for player in players{
+    var loop: Bool = true
+    // While there is more than one player with caracters alive we continue our loop
+    while(loop) {
+      for player in players {
         if loop == false {
           continue
         }
         
-        //The text i'm using to manage the choice of an attacked player
+        // The text i'm using to manage the choice of an attacked player
         let playerChoice = returnPlayersID(exception: player)
         let acceptedValue = acceptedPlayer(exception: player)
-        var playerAction : PlayerActions = .Attack
+        var playerAction: PlayerActions = .attack
         let random = Int.random(in: 1...numberOfPlayers)
         
         
@@ -98,36 +98,36 @@ public class Game {
         player.detailTeam()
         print("")
         
-        playerAction = InputManager.shared.askAction(descriptionParameters: Text.actionDescription, choiceParametres: Text.actionChoice, wrongDescription: Text.wrongAction, valueAccepted: [1, 2])
+        playerAction = InputManager.shared.askAction(descriptionParameters: Text.actionDescription, choiceParameters: Text.actionChoice, wrongDescription: Text.wrongAction, valueAccepted: [1, 2])
         
         switch playerAction {
           
-        case .Attack:
-          //Get the character from the team who is going to attack
+        case .attack:
+          // Get the character from the team who is going to attack
           let choosenCharacter = player.characterCanPlay()
           
           if random == player.playerID {
             choosenCharacter.askChangeWeapon()
           }
           
-          var AttackedPlayer : Player
+          var attackedPlayer: Player
           
-          //We get the player who is going to be atacked
-          AttackedPlayer = InputManager.shared.askPlayer(descriptionParameters: Text.playerChoiceDescription, choiceParametres: playerChoice, wrongDescription: Text.wrongPlayer, valueAccepted: acceptedValue, playersArray: self.players)
+          // We get the player who is going to be atacked
+          attackedPlayer = InputManager.shared.askPlayer(descriptionParameters: Text.playerChoiceDescription, choiceParameters: playerChoice, wrongDescription: Text.wrongPlayer, valueAccepted: acceptedValue, playersArray: self.players)
           
           // We check if the character can be attacked
-          let AttackedCharacter = AttackedPlayer.characterCanPlay()
+          let AttackedCharacter = attackedPlayer.characterCanPlay()
           
           // The two characters are fighting
-          choosenCharacter.attack(player: AttackedCharacter)
+          choosenCharacter.attack(character: AttackedCharacter)
           
           // If a character's life is less or equal to 0 we remove him
           if AttackedCharacter.healthPoint <= 0 {
-            AttackedPlayer.removeCharacter(character: AttackedCharacter)
+            attackedPlayer.removeCharacter(character: AttackedCharacter)
           }
           // If the number of character from a player's team is equal to 0 we remove him
-          if AttackedPlayer.team.count == 0 {
-            remove(player: AttackedPlayer)
+          if attackedPlayer.team.count == 0 {
+            remove(player: attackedPlayer)
           }
           
           numberOfRounds += 1
@@ -136,7 +136,7 @@ public class Game {
             loop = false
           }
           
-        case .Heal:
+        case .heal:
           //Get the character who is going to heal
           let healerCharacter = player.characterCanPlay()
           
@@ -153,8 +153,8 @@ public class Game {
     }
   }
   
-  //This function is used when the game is finished
-  private func resumeGame(){
+  /// This function is used when the game is finished
+  private func resumeGame() {
     print("Number of rounds : \(numberOfRounds)")
     print("The winner is")
     for player in players {
@@ -162,9 +162,9 @@ public class Game {
     }
   }
   
-  //MARK: - PUBLIC
+  // MARK: - PUBLIC
   
-  public func start(){
+  public func start() {
     initializePlayers()
     initializeCharacters(maxCharacters: numberOfCharacters)
     mainLoop()

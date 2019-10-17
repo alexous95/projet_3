@@ -8,18 +8,18 @@
 
 import Foundation
 
-public class Gun : Weapon {
+public class Gun: Weapon {
   
   init(){
     super.init(dammage: 7)
   }
   
-  //Init function used for the randomly created weapons
-  init(newDammage : Int){
+  /// Init function used for the randomly created weapons
+  init(newDammage: Int) {
     super.init(dammage: newDammage)
   }
   
-  override func description(){
+  override func description() {
     print("I am a gun and i deal \(self.dammage) dammage")
   }
   

@@ -9,6 +9,6 @@
 import Foundation
 
 enum WeaponType {
-  case Sword
-  case Gun
+  case sword
+  case gun
 }

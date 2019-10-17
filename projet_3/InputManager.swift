@@ -14,17 +14,19 @@ public class InputManager {
   
   private init(){}
   
-  //This function is used to read input from users and return a Int
+  /// This function is used to read input from users and return a Int
   private func inputInt() -> Int {
     let readData = readLine()
     
-    if let dataInt = readData {
-      return Int(dataInt)!
+    if let data = readData {
+      if let intData = Int(data){
+        return intData
+      }
     }
-    return 0
+    return -1
   }
   
-  //This function is used to read input from users and return a String
+  /// This function is used to read input from users and return a String
   private func inputStr() -> String {
     let readData = readLine()
     if let data = readData {
@@ -33,15 +35,15 @@ public class InputManager {
     return "We have a problem"
   }
   
-  //This function is used to read the user input when a string is expected. As parameters we have 3 arrays of string that describe the different choices
-  func askStr(descriptionParameters : [String], choiceParametres : [String]?, wrongDescription : [String], stringArray : inout [String]) -> String {
+  /// This function is used to read the user input when a string is expected. As parameters we have 3 arrays of string that describe the different choices
+  func askStr(descriptionParameters: [String], choiceParameters: [String]?, wrongDescription: [String], stringArray: inout [String]) -> String {
     var resultString = ""
     var i = 0
     for description in descriptionParameters {
       print(description)
     }
     
-    if let choiceParametres = choiceParametres {
+    if let choiceParametres = choiceParameters {
       for parametres in choiceParametres {
         i += 1
         print("\(i).\(parametres)")
@@ -60,41 +62,41 @@ public class InputManager {
     return resultString
   }
   
-  //This function checks if a value is inside an array of String
-  func checkStrValue(in array : inout [String], value : String) -> Bool{
-    if array.contains(value){
+  /// This function checks if a value is inside an array of String
+  func checkStrValue(in array: inout [String], value: String) -> Bool {
+    if array.contains(value) {
       return true
     }
     return false
   }
   
-  //This function checks if a value is inside an array of Int
-  func checkIntValue(in array : [Int], value : Int) -> Bool{
-    for i in array{
-      if value == i{
+  /// This function checks if a value is inside an array of Int
+  func checkIntValue(in array: [Int], value: Int) -> Bool {
+    for i in array {
+      if value == i {
         return true
       }
     }
     return false
   }
   
-  //This function is used when we ask a user for an Int
-  func askInt(descriptionParameters : [String], choiceParametres : [String]?, wrongDescription : [String], valueAccepted : [Int]) -> Int{
+  /// This function is used when we ask a user for an Int
+  func askInt(descriptionParameters: [String], choiceParameters: [String]?, wrongDescription: [String], valueAccepted: [Int]) -> Int {
     var result : Int = 0
     var i = 0
-    for descrption in descriptionParameters{
+    for descrption in descriptionParameters {
       print(descrption)
     }
-    if let choiceParametres = choiceParametres{
-      for parametre in choiceParametres{
+    if let choiceParameters = choiceParameters {
+      for parameter in choiceParameters {
         i += 1
-        print("\(i).\(parametre)")
+        print("\(i).\(parameter)")
       }
     }
     result = inputInt()
     print("")
     
-    while(checkIntValue(in: valueAccepted, value: result) == false){
+    while(checkIntValue(in: valueAccepted, value: result) == false) {
       for description in wrongDescription {
         print(description)
       }
@@ -105,25 +107,25 @@ public class InputManager {
     return result
   }
   
-  //This function is used when the user is asked to choose a weapon
-  func askWeapon(descriptionParameters : [String], choiceParametres : [String]?, wrongDescription : [String], valueAccepted : [Int]) -> WeaponType {
-    var result : Int = 0
+  /// This function is used when the user is asked to choose a weapon
+  func askWeapon(descriptionParameters: [String], choiceParameters: [String]?, wrongDescription: [String], valueAccepted: [Int]) -> WeaponType {
+    var result: Int = 0
     var i = 0
-    var weaponType : WeaponType = .Sword
+    var weaponType: WeaponType = .sword
     
     for descrption in descriptionParameters{
       print(descrption)
     }
-    if let choiceParametres = choiceParametres{
-      for parametre in choiceParametres{
+    if let choiceParameters = choiceParameters{
+      for parameter in choiceParameters{
         i += 1
-        print("\(i).\(parametre)")
+        print("\(i).\(parameter)")
       }
     }
     result = inputInt()
     print("")
     
-    while(checkIntValue(in: valueAccepted, value: result) == false){
+    while(checkIntValue(in: valueAccepted, value: result) == false) {
       for description in wrongDescription {
         print(description)
       }
@@ -133,9 +135,9 @@ public class InputManager {
     }
     switch result {
     case 1:
-      weaponType = .Sword
+      weaponType = .sword
     case 2:
-      weaponType = .Gun
+      weaponType = .gun
     default:
       break
     }
@@ -143,19 +145,19 @@ public class InputManager {
   }
   
   
-  //This function is used when the user is asked to choose an action
-  func askAction(descriptionParameters : [String], choiceParametres : [String]? = nil, wrongDescription : [String], valueAccepted : [Int]) -> PlayerActions  {
+  /// This function is used when the user is asked to choose an action
+  func askAction(descriptionParameters: [String], choiceParameters : [String]? = nil, wrongDescription: [String], valueAccepted: [Int]) -> PlayerActions  {
     var result : Int = 0
     var i = 0
-    var actionType : PlayerActions = .Attack
+    var actionType: PlayerActions = .attack
     
-    for description in descriptionParameters{
+    for description in descriptionParameters {
       print(description)
     }
-    if let choiceParametres = choiceParametres{
-      for parametre in choiceParametres{
+    if let choiceParameters = choiceParameters {
+      for parameter in choiceParameters{
         i += 1
-        print("\(i).\(parametre)")
+        print("\(i).\(parameter)")
       }
     }
     result = inputInt()
@@ -171,33 +173,34 @@ public class InputManager {
     }
     switch result {
     case 1:
-      actionType = .Attack
+      actionType = .attack
     case 2:
-      actionType = .Heal
+      actionType = .heal
     default:
       break
     }
     return actionType
   }
   
-  //This function is used when the users is asked to choose a player
-  func askPlayer(descriptionParameters : [String], choiceParametres : [String]?, wrongDescription : [String], valueAccepted : [Int], playersArray : [Player]) -> Player  {
-    var result : Int = 0
+  /// This function is used when the users is asked to choose a player
+  func askPlayer(descriptionParameters: [String], choiceParameters: [String]?, wrongDescription: [String], valueAccepted: [Int], playersArray: [Player]) -> Player  {
+    
+    var result: Int = 0
     var i = 0
     
-    for description in descriptionParameters{
+    for description in descriptionParameters {
       print(description)
     }
-    if let choiceParametres = choiceParametres{
-      for parametre in choiceParametres{
+    if let choiceParameters = choiceParameters {
+      for parameter in choiceParameters{
         i += 1
-        print("\(i).\(parametre)")
+        print("\(i).\(parameter)")
       }
     }
     result = inputInt()
     print("")
     
-    while(checkIntValue(in: valueAccepted, value: result) == false){
+    while(checkIntValue(in: valueAccepted, value: result) == false) {
       for description in wrongDescription {
         print(description)
       }

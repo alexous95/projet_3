@@ -10,28 +10,28 @@ import Foundation
 
 public class Character {
   
-  //Create the variable name wich contains the character's name. Choosen by the player
-  internal var name: String
+  /// Create the variable name wich contains the character's name. Choosen by the player
+  var name: String
   
-  //Create the variable healthPoint. Initialised by default at 40
-  internal var healthPoint: Int = 40
+  /// Create the variable healthPoint. Initialised by default at 40
+  var healthPoint: Int = 40
   
-  //Create the variable weapon. This variable contains the weapon choosen by the player
-  var weapon : Weapon
+  /// Create the variable weapon. This variable contains the weapon choosen by the player
+  var weapon: Weapon
   
-  //Init function. Creates a player based on the name and a weapon
-  init(name : String, weapon : Weapon) {
+  /// Init function. Creates a player based on the name and a weapon
+  init(name: String, weapon: Weapon) {
     self.name = name
     self.weapon = weapon
   }
   
-  //Function attack with the attacked player as argument
-  internal func attack(player : Character){
-    player.healthPoint = player.healthPoint - weapon.dammage
+  /// Function attack with the attacked player as argument
+  func attack(character: Character) {
+    character.healthPoint = character.healthPoint - weapon.dammage
   }
   
-  //Function that allows a player to switch his  weapon
-  private func changeWeapon(newWeapon : Weapon){
+  /// Function that allows a player to switch his  weapon
+  private func changeWeapon(newWeapon: Weapon) {
     weapon = newWeapon
   }
   
@@ -48,20 +48,20 @@ public class Character {
     }
   }
   
-  //This function is used to ask if the character would like to change his weapon with the one in the chest
-  internal func askChangeWeapon(){
+  /// This function is used to ask if the character would like to change his weapon with the one in the chest
+  func askChangeWeapon() {
     let newWeapon = createRandomWeapon()
     
     print("A chest has appeared")
-    let pickAction = InputManager.shared.askInt(descriptionParameters: Text.changeDescription, choiceParametres: Text.changeAction, wrongDescription: Text.wrongChange, valueAccepted: [1, 2])
+    let pickAction = InputManager.shared.askInt(descriptionParameters: Text.changeDescription, choiceParameters: Text.changeAction, wrongDescription: Text.wrongChange, valueAccepted: [1, 2])
     if pickAction == 1 {
       changeWeapon(newWeapon: newWeapon)
       newWeapon.description()
     }
   }
   
-  //Heal function with the targeted player as argument
-  internal func heal(player : Character){
-    healthPoint += 20
+  /// Heal function with the targeted player as argument
+  func heal(player: Character){
+    player.healthPoint += 20
   }
 }
